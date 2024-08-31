@@ -1,4 +1,4 @@
-package org.example.springcomh2;
+package backend.agendou.auth;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
