@@ -1,8 +1,11 @@
 package backend.agendou.auth.service;
 
 import backend.agendou.auth.dto.request.UsuarioRequestDTO;
+import backend.agendou.auth.dto.response.UsuarioResponseDTO;
+import backend.agendou.auth.mapper.UsuarioMapper;
 import backend.agendou.auth.model.Usuario;
 import backend.agendou.auth.repository.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -12,21 +15,25 @@ import java.util.Optional;
 @Service
 public class UsuarioService {
     private final UsuarioRepository repository;
+    private final UsuarioMapper mapper;
 
-    public UsuarioService(UsuarioRepository repository) {
+    @Autowired
+    public UsuarioService(UsuarioRepository repository, UsuarioMapper mapper) {
         this.repository = repository;
+        this.mapper = mapper;
     }
 
-
     public ResponseEntity<String> login(String email, String senha){
+        System.out.println("Iniciando login para o email: " + email);
         try {
             Optional<Usuario> optionalUsuario = repository.findByEmail(email);
             if(optionalUsuario.isEmpty()){
                 return ResponseEntity.status(401).body("Usuário não encontrado.");
             }
             Usuario usuarioEntity = optionalUsuario.get();
+            UsuarioResponseDTO usuarioResponse = mapper.toDTO(usuarioEntity);
 
-            if (!usuarioEntity.getSenha().equals(senha)) {
+            if (!usuarioResponse.getSenha().equals(senha)) {
                 return ResponseEntity.status(401).body("Senha incorreta.");
             }
 
@@ -46,11 +53,11 @@ public class UsuarioService {
                 return ResponseEntity.status(409).body("Já existe um usuário com este e-mail.");
             }
 
-            Usuario novoUsuario = new Usuario();
-            novoUsuario.setEmail(usuarioRequest.getEmail());
-            novoUsuario.setSenha(usuarioRequest.getSenha());
+            Usuario usuario = mapper.toEntity(usuarioRequest);
+            usuario.setEmail(usuarioRequest.getEmail());
+            usuario.setSenha(usuarioRequest.getSenha());
 
-            repository.save(novoUsuario);
+            repository.save(usuario);
 
             return ResponseEntity.status(201).body("Usuário cadastrado com sucesso.");
         } catch (Exception e) {

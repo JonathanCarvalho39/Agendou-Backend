@@ -1,6 +1,5 @@
 package backend.agendou.auth.model;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,9 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "usuario")
-public class Usuario {
-
+public class Servico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -21,10 +18,12 @@ public class Usuario {
     @Column(name = "nome")
     private String nome;
 
-    @Column(name = "email")
-    private String email;
+    @Column(name = "preco")
+    private Double preco;
 
-    @Column(name = "senha")
-    private String senha;
+    @Column(name = "descricao")
+    private String descricao;
 
+    @Column(name = "duracaoServico")
+    private Integer duracaoServico;
 }
