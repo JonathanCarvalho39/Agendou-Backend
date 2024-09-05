@@ -4,6 +4,7 @@ import backend.agendou.auth.dto.request.UsuarioRequestDTO;
 import backend.agendou.auth.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/usuarios")
+@Validated
 public class UsuarioController {
 
     @Autowired
@@ -19,6 +21,7 @@ public class UsuarioController {
 
     @GetMapping("/login")
     public ResponseEntity<String> login(@RequestParam String email, @RequestParam String senha) {
+        System.out.println("Recebida requisição de login com email: " + email);
         try {
             return service.login(email, senha);
         } catch (Exception e) {
