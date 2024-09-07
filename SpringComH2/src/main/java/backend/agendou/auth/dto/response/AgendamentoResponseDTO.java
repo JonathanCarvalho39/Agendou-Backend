@@ -4,14 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ServicoResponseDTO {
-
+public class AgendamentoResponseDTO {
         private Integer id;
-        private String nome;
-        private Double preco;
-        private String descricao;
-        private Integer duracaoServico;
+        private String profissional;
+        private LocalDateTime dataHoraCorte;
 }
