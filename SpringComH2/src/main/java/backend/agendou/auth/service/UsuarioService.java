@@ -56,6 +56,7 @@ public class UsuarioService {
             Usuario usuario = mapper.toEntity(usuarioRequest);
             usuario.setEmail(usuarioRequest.getEmail());
             usuario.setSenha(usuarioRequest.getSenha());
+            usuario.setNome(usuarioRequest.getNome());
 
             repository.save(usuario);
 
