@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class Servico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id_servico")
     private Integer id;
 
     @Column(name = "nome")
@@ -23,7 +23,4 @@ public class Servico {
 
     @Column(name = "descricao")
     private String descricao;
-
-    @Column(name = "duracaoServico")
-    private Integer duracaoServico;
 }

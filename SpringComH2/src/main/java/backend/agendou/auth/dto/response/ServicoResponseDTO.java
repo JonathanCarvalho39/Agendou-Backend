@@ -13,5 +13,4 @@ public class ServicoResponseDTO {
         private String nome;
         private Double preco;
         private String descricao;
-        private Integer duracaoServico;
 }

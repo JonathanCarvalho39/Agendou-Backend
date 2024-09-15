@@ -28,7 +28,6 @@ public class ServicoService {
             servicoAtualizado.setNome(servico.getNome());
             servicoAtualizado.setPreco(servico.getPreco());
             servicoAtualizado.setDescricao(servico.getDescricao());
-            servicoAtualizado.setDuracaoServico(servico.getDuracaoServico());
 
             repository.save(servicoAtualizado);
         } else {
@@ -46,7 +45,6 @@ public class ServicoService {
         novoServico.setNome(servico.getNome());
         novoServico.setPreco(servico.getPreco());
         novoServico.setDescricao(servico.getDescricao());
-        novoServico.setDuracaoServico(servico.getDuracaoServico());
         repository.save(novoServico);
     }
 }

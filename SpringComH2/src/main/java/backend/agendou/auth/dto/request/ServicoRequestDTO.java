@@ -12,5 +12,4 @@ public class ServicoRequestDTO {
     private String nome;
     private Double preco;
     private String descricao;
-    private Integer duracaoServico;
 }
