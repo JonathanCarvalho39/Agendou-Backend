@@ -1,6 +1,8 @@
 package backend.agendou.auth.controller;
 
 import backend.agendou.auth.dto.request.UsuarioRequestDTO;
+import backend.agendou.auth.dto.response.UsuarioResponseDTO;
+import backend.agendou.auth.model.Usuario;
 import backend.agendou.auth.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +28,15 @@ public class UsuarioController {
             return service.login(email, senha);
         } catch (Exception e) {
             return ResponseEntity.status(401).body("E-mail ou senha inválido.");
+        }
+    }
+
+    @GetMapping("/listar")
+    public ResponseEntity<List<UsuarioResponseDTO>> listarUsuarios() {
+        try {
+            return ResponseEntity.status(200).body(service.listarUsuarios());
+        } catch (Exception e) {
+            return ResponseEntity.status(400).build();
         }
     }
 

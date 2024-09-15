@@ -15,7 +15,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id_usuario")
     private Integer id;
 
     @Column(name = "nome")
@@ -26,5 +26,8 @@ public class Usuario {
 
     @Column(name = "senha")
     private String senha;
+
+    @Column(name = "tipo")
+    private String tipo;
 
 }

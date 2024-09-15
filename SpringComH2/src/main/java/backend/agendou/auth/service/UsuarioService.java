@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -44,7 +46,6 @@ public class UsuarioService {
         }
     }
 
-
     public ResponseEntity<String> cadastrarUsuario(UsuarioRequestDTO usuarioRequest) {
         try {
             Optional<Usuario> usuarioExistente = (Optional<Usuario>) repository.findByEmail(usuarioRequest.getEmail());
@@ -57,6 +58,7 @@ public class UsuarioService {
             usuario.setEmail(usuarioRequest.getEmail());
             usuario.setSenha(usuarioRequest.getSenha());
             usuario.setNome(usuarioRequest.getNome());
+            usuario.setTipo(usuarioRequest.getTipo());
 
             repository.save(usuario);
 
@@ -65,6 +67,15 @@ public class UsuarioService {
             return ResponseEntity.status(500)
                     .body("Ocorreu um erro durante o cadastro do usuário.");
         }
+    }
+
+    // Add the following method to the UsuarioService class
+
+    public List<UsuarioResponseDTO> listarUsuarios() {
+        List<Usuario> usuarios = repository.findAll();
+        return usuarios.stream()
+                .map(mapper::toDTO)
+                .collect(Collectors.toList());
     }
 
 

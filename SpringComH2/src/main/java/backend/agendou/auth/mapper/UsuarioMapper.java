@@ -12,7 +12,9 @@ public class UsuarioMapper {
         try {
             Usuario usuario = new Usuario();
             usuario.setEmail(requestDTO.getEmail());
+            usuario.setNome(requestDTO.getNome());
             usuario.setSenha(requestDTO.getSenha());
+            usuario.setTipo(requestDTO.getTipo());
             return usuario;
         } catch (Exception e) {
             throw new Exception("Erro ao mapear UsuarioRequestDTO para entidade: " + e.getMessage());
@@ -27,6 +29,7 @@ public class UsuarioMapper {
             dto.setNome(entity.getNome());
             dto.setEmail(entity.getEmail());
             dto.setSenha(entity.getSenha());
+            dto.setTipo(entity.getTipo());
             return dto;
         } catch (Exception e) {
             throw new RuntimeException("Não foi possível mapear o usuário para o DTO.", e);
