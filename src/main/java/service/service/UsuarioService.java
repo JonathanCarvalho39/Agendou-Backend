@@ -1,5 +1,4 @@
 package backend.agendou.auth.service;
-
 import backend.agendou.auth.dto.request.UsuarioRequestDTO;
 import backend.agendou.auth.dto.response.UsuarioResponseDTO;
 import backend.agendou.auth.mapper.UsuarioMapper;

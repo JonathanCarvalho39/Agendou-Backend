@@ -1,10 +1,10 @@
-package backend.agendou.auth;
+package api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringComH2ApplicationTests {
+class SpringBackendApplicationTests {
 
     @Test
     void contextLoads() {

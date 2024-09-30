@@ -1,13 +1,13 @@
-package backend.agendou.auth;
+package api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringComH2Application {
+public class SpringBackendApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringComH2Application.class, args);
+        SpringApplication.run(SpringBackendApplication.class, args);
     }
 
 }
