@@ -1,8 +1,6 @@
 package back.api.config;
 
 
-import back.api.strategy.OrdenacaoStrategy;
-import back.api.strategy.OrdenarPorDataStrategy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
