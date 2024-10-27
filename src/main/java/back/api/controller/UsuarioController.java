@@ -3,6 +3,8 @@ package back.api.controller;
 
 import back.domain.dto.request.UsuarioRequestDTO;
 import back.domain.dto.response.UsuarioResponseDTO;
+import lombok.AllArgsConstructor;
+import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -15,58 +17,35 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/usuarios")
+@AllArgsConstructor
 @Validated
 public class UsuarioController {
 
-    @Autowired
-    private UsuarioService service;
+    private final UsuarioService service;
 
     @GetMapping("/login")
     public ResponseEntity<String> login(@RequestParam String email, @RequestParam String senha) {
         System.out.println("Recebida requisição de login com email: " + email);
-        try {
-            return service.login(email, senha);
-        } catch (Exception e) {
-            return ResponseEntity.status(401).body("E-mail ou senha inválido.");
-        }
+        return service.login(email, senha);
     }
 
     @GetMapping("/listar")
     public ResponseEntity<List<UsuarioResponseDTO>> listarUsuarios() {
-        try {
-            return ResponseEntity.status(200).body(service.listarUsuarios());
-        } catch (Exception e) {
-            return ResponseEntity.status(400).build();
-        }
+        return ResponseEntity.status(200).body(service.listarUsuarios());
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<String> cadastrarUsuario(@RequestBody @Valid UsuarioRequestDTO usuario) {
-        try {
-            service.cadastrarUsuario(usuario);
-            return ResponseEntity.status(201).body("Usuário cadastrado com sucesso!");
-        } catch (Exception e) {
-            return ResponseEntity.status(400).body("Ocorreu um erro durante o cadastro.");
-        }
+    public ResponseEntity<?> cadastrarUsuario(@RequestBody @Valid UsuarioRequestDTO usuario) {
+        return service.cadastrarUsuario(usuario);
     }
 
-    @PutMapping("/atualizar")
-    public ResponseEntity<String> atualizarUsuario(@RequestBody @Valid UsuarioRequestDTO usuario){
-        try {
-            service.atualizarUsuario(usuario);
-            return ResponseEntity.status(202).body("Usuário atualizado com sucesso.");
-        } catch (Exception e) {
-            return ResponseEntity.status(400).body("Ocorreu um erro durante a atualização do usuário.");
-        }
+    @PutMapping("/atualizar/{id}")
+    public ResponseEntity<?> atualizarUsuario(@RequestBody @Valid UsuarioRequestDTO usuario,@RequestParam Integer id){
+        return service.atualizarUsuario(id, usuario);
     }
 
-    @DeleteMapping("/deletar")
-    public ResponseEntity<String> deletarUsuario(@RequestBody @Valid UsuarioRequestDTO usuario){
-        try{
-            service.deletarUsuario(usuario);
-            return ResponseEntity.status(202).body("Usuário deletado com sucesso.");
-        } catch (Exception e) {
-            return ResponseEntity.status(400).body("Ocorreu um erro durante a deleção do usuário.");
-        }
+    @DeleteMapping("/deletar/{id}")
+    public ResponseEntity<?> deletarUsuario(@RequestParam Integer id){
+        return service.deletarUsuario(id);
     }
 }

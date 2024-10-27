@@ -25,8 +25,4 @@ public class Usuario {
 
     @Column(name = "senha")
     private String senha;
-
-    @Column(name = "tipo")
-    private String tipo;
-
 }
