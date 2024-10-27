@@ -13,5 +13,4 @@ public class UsuarioResponseDTO {
     private String nome;
     private String email;
     private String senha;
-    private String tipo;
 }

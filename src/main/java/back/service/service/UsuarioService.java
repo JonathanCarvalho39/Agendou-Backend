@@ -3,7 +3,6 @@ package back.service.service;
 import back.domain.dto.request.UsuarioRequestDTO;
 import back.domain.dto.response.UsuarioResponseDTO;
 import back.domain.mapper.UserMapper;
-import back.domain.mapper.UsuarioMapper;
 import back.domain.model.Usuario;
 import back.domain.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
@@ -38,6 +37,7 @@ public class UsuarioService {
         return ResponseEntity.ok("Login realizado com sucesso!");
     }
 
+
     public ResponseEntity<?> cadastrarUsuario(UsuarioRequestDTO dto){
 
         if(repository.existsByEmail(dto.getEmail())){
@@ -48,14 +48,15 @@ public class UsuarioService {
         usuario.setNome(dto.getNome());
         usuario.setSenha(dto.getSenha());
         usuario.setEmail(dto.getEmail());
-        usuario = repository.save(usuario);
+        Usuario usuarioSalvo = repository.save(usuario);
 
-        UsuarioResponseDTO responseDTO = mapper.toUsuarioResponseDto(usuario);
+        UsuarioResponseDTO responseDTO = mapper.toUsuarioResponseDto(usuarioSalvo);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(responseDTO);
     }
+
 
     public List<UsuarioResponseDTO> listarUsuarios() {
         List<Usuario> usuarios = repository.findAll();
@@ -80,6 +81,7 @@ public class UsuarioService {
 
         return ResponseEntity.status(200).body(mapper.toUsuarioResponseDto(usuario));
     }
+
 
     public ResponseEntity<?> deletarUsuario(Integer id) {
         Optional<Usuario> usuarioExistente = repository.findById(id);

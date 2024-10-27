@@ -4,8 +4,6 @@ package back.api.controller;
 import back.domain.dto.request.UsuarioRequestDTO;
 import back.domain.dto.response.UsuarioResponseDTO;
 import lombok.AllArgsConstructor;
-import org.hibernate.annotations.Parameter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -40,12 +38,12 @@ public class UsuarioController {
     }
 
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<?> atualizarUsuario(@RequestBody @Valid UsuarioRequestDTO usuario,@RequestParam Integer id){
+    public ResponseEntity<?> atualizarUsuario(@RequestBody @Valid UsuarioRequestDTO usuario,@PathVariable Integer id){
         return service.atualizarUsuario(id, usuario);
     }
 
     @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<?> deletarUsuario(@RequestParam Integer id){
+    public ResponseEntity<?> deletarUsuario(@PathVariable Integer id){
         return service.deletarUsuario(id);
     }
 }
