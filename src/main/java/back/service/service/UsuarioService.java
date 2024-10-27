@@ -1,123 +1,99 @@
 package back.service.service;
 
-
 import back.domain.dto.request.UsuarioRequestDTO;
 import back.domain.dto.response.UsuarioResponseDTO;
-import back.domain.mapper.UsuarioMapper;
+import back.domain.mapper.UserMapper;
 import back.domain.model.Usuario;
 import back.domain.repository.UsuarioRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-
 @Service
+@AllArgsConstructor
 public class UsuarioService {
     private final UsuarioRepository repository;
-    private final UsuarioMapper mapper;
-
-    @Autowired
-    public UsuarioService(UsuarioRepository repository, UsuarioMapper mapper) {
-        this.repository = repository;
-        this.mapper = mapper;
-    }
+    private final UserMapper mapper;
 
     public ResponseEntity<String> login(String email, String senha){
         System.out.println("Iniciando login para o email: " + email);
-        try {
-            Optional<Usuario> optionalUsuario = repository.findByEmail(email);
-            if(optionalUsuario.isEmpty()){
-                return ResponseEntity.status(401).body("Usuário não encontrado.");
-            }
-            Usuario usuarioEntity = optionalUsuario.get();
-            UsuarioResponseDTO usuarioResponse = mapper.toDTO(usuarioEntity);
-
-            if (!usuarioResponse.getSenha().equals(senha)) {
-                return ResponseEntity.status(401).body("Senha incorreta.");
-            }
-
-            return ResponseEntity.ok("Login realizado com sucesso!");
-
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body("Ocorreu um erro durante o login.");
+        Optional<Usuario> optionalUsuario = repository.findByEmail(email);
+        if(optionalUsuario.isEmpty()){
+            return ResponseEntity.status(401).body("Usuário não encontrado.");
         }
+        Usuario usuarioEntity = optionalUsuario.get();
+        UsuarioResponseDTO usuarioResponse = mapper.toUsuarioResponseDto(usuarioEntity);
+
+        if (!usuarioResponse.getSenha().equals(senha)) {
+            return ResponseEntity.status(401).body("Senha incorreta.");
+        }
+
+        return ResponseEntity.ok("Login realizado com sucesso!");
     }
 
-    public ResponseEntity<String> cadastrarUsuario(UsuarioRequestDTO usuarioRequest) {
-        try {
-            Optional<Usuario> usuarioExistente = (Optional<Usuario>) repository.findByEmail(usuarioRequest.getEmail());
 
-            if (usuarioExistente.isPresent()) {
-                return ResponseEntity.status(409).body("Já existe um usuário com este e-mail.");
-            }
+    public ResponseEntity<?> cadastrarUsuario(UsuarioRequestDTO dto){
 
-            Usuario usuario = mapper.toEntity(usuarioRequest);
-            usuario.setEmail(usuarioRequest.getEmail());
-            usuario.setSenha(usuarioRequest.getSenha());
-            usuario.setNome(usuarioRequest.getNome());
-            usuario.setTipo(usuarioRequest.getTipo());
-
-            repository.save(usuario);
-
-            return ResponseEntity.status(201).body("Usuário cadastrado com sucesso.");
-        } catch (Exception e) {
-            return ResponseEntity.status(500)
-                    .body("Ocorreu um erro durante o cadastro do usuário.");
+        if(repository.existsByEmail(dto.getEmail())){
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Email ja cadastrado");
         }
+
+        Usuario usuario = mapper.toEntity(dto);
+        usuario.setNome(dto.getNome());
+        usuario.setSenha(dto.getSenha());
+        usuario.setEmail(dto.getEmail());
+        Usuario usuarioSalvo = repository.save(usuario);
+
+        UsuarioResponseDTO responseDTO = mapper.toUsuarioResponseDto(usuarioSalvo);
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(responseDTO);
     }
 
-    // Add the following method to the UsuarioService class
 
     public List<UsuarioResponseDTO> listarUsuarios() {
         List<Usuario> usuarios = repository.findAll();
         return usuarios.stream()
-                .map(mapper::toDTO)
+                .map(mapper::toUsuarioResponseDto)
                 .collect(Collectors.toList());
     }
 
 
-    public ResponseEntity<String> atualizarUsuario(UsuarioRequestDTO usuarioRequest) {
-        try {
-            Optional<Usuario> usuarioExistente = (Optional<Usuario>) repository.findByEmail(usuarioRequest.getEmail());
+    public ResponseEntity<?> atualizarUsuario(Integer id, UsuarioRequestDTO usuarioRequest) {
+        Optional<Usuario> usuarioExistente = repository.findById(id);
 
-            if (usuarioExistente.isEmpty()) {
-                return ResponseEntity.status(404).body("Usuário não encontrado.");
-            }
-
-            Usuario usuario = usuarioExistente.get();
-            usuario.setEmail(usuarioRequest.getEmail());
-            usuario.setSenha(usuarioRequest.getSenha());
-
-            repository.save(usuario);
-
-            return ResponseEntity.status(202).body("Usuário atualizado com sucesso.");
-        } catch (Exception e) {
-            return ResponseEntity.status(500)
-                    .body("Ocorreu um erro durante a atualização do usuário.");
+        if (usuarioExistente.isEmpty()) {
+            return ResponseEntity.status(404).body("Usuário não encontrado.");
         }
+
+        Usuario usuario = usuarioExistente.get();
+        usuario.setEmail(usuarioRequest.getEmail());
+        usuario.setSenha(usuarioRequest.getSenha());
+
+        repository.save(usuario);
+
+        return ResponseEntity.status(200).body(mapper.toUsuarioResponseDto(usuario));
     }
 
 
-    public ResponseEntity<String> deletarUsuario(UsuarioRequestDTO usuarioRequest) {
-        try {
-            Optional<Usuario> usuarioExistente = (Optional<Usuario>) repository.findByEmail(usuarioRequest.getEmail());
+    public ResponseEntity<?> deletarUsuario(Integer id) {
+        Optional<Usuario> usuarioExistente = repository.findById(id);
 
-            if (usuarioExistente.isEmpty()) {
-                return ResponseEntity.status(404).body("Usuário não encontrado.");
-            }
-
-            Usuario usuario = usuarioExistente.get();
-            repository.delete(usuario);
-
-            return ResponseEntity.status(202).body("Usuário deletado com sucesso.");
-        } catch (Exception e) {
-            return ResponseEntity.status(500)
-                    .body("Ocorreu um erro durante a deleção do usuário.");
+        if (usuarioExistente.isEmpty()) {
+            return ResponseEntity.status(404).body("Usuário não encontrado.");
         }
+
+        Usuario usuario = usuarioExistente.get();
+        repository.delete(usuario);
+
+        return ResponseEntity.status(200).body(usuario);
     }
 
 }
