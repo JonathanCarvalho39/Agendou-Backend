@@ -2,7 +2,7 @@ package back.service.service;
 
 import back.domain.dto.request.UsuarioRequestDTO;
 import back.domain.dto.response.UsuarioResponseDTO;
-import back.domain.mapper.UserMapper;
+import back.domain.mapper.UsuarioMapper;
 import back.domain.model.Usuario;
 import back.domain.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
