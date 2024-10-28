@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import back.service.service.ServicoService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/servicos")
@@ -51,14 +52,8 @@ public class ServicoController {
         }
     }
 
-
-    @DeleteMapping
-    public ResponseEntity<String> deletarServico(@RequestBody @Valid ServicoRequestDTO servico) {
-        try{
-            service.deletarServico(servico);
-            return ResponseEntity.status(202).body("Serviço deletado com sucesso.");
-        } catch (Exception e) {
-            return ResponseEntity.status(400).body("Ocorreu um erro durante a deleção do serviço.");
-        }
+    @DeleteMapping("/deletar/{id}")
+    public ResponseEntity<?> deletarServico(@PathVariable Integer id){
+        return service.deletarServico(id);
     }
 }
