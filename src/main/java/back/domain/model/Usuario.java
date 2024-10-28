@@ -25,4 +25,7 @@ public class Usuario {
 
     @Column(name = "senha")
     private String senha;
+
+    @Column(name = "telefone")
+    private String telefone;
 }

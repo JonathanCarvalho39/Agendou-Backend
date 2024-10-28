@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class UsuarioService {
     private final UsuarioRepository repository;
-    private final UserMapper mapper;
+    private final UsuarioMapper mapper;
 
     public ResponseEntity<String> login(String email, String senha){
         System.out.println("Iniciando login para o email: " + email);
@@ -48,9 +48,11 @@ public class UsuarioService {
         usuario.setNome(dto.getNome());
         usuario.setSenha(dto.getSenha());
         usuario.setEmail(dto.getEmail());
+        usuario.setTelefone(dto.getTelefone());
         Usuario usuarioSalvo = repository.save(usuario);
 
         UsuarioResponseDTO responseDTO = mapper.toUsuarioResponseDto(usuarioSalvo);
+        System.out.println("usuario: " + responseDTO);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -74,8 +76,10 @@ public class UsuarioService {
         }
 
         Usuario usuario = usuarioExistente.get();
+        usuario.setNome(usuarioRequest.getNome());
         usuario.setEmail(usuarioRequest.getEmail());
         usuario.setSenha(usuarioRequest.getSenha());
+        usuario.setTelefone(usuario.getTelefone());
 
         repository.save(usuario);
 
