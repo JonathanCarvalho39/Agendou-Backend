@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class UsuarioService {
+
     private final UsuarioRepository repository;
     private final UsuarioMapper mapper;
 
