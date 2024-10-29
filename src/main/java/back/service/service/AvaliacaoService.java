@@ -67,6 +67,8 @@ public class AvaliacaoService {
 
             avaliacaoResponseDTOs.add(AvaliacaoMapper.toDTO(avaliacao));
         }
+        
+        mergeSort(avaliacaoResponseDTOs, 0, avaliacaoResponseDTOs.size() - 1);
 
         return avaliacaoResponseDTOs;
     }
@@ -100,5 +102,59 @@ public class AvaliacaoService {
         }
 
         return count > 0 ? totalStars / count : 0;
+    }
+
+
+    private void mergeSort(List<AvaliacaoResponseDTO> avaliacoes, int left, int right) {
+        if (left < right) {
+            int middle = (left + right) / 2;
+
+
+            mergeSort(avaliacoes, left, middle);
+            mergeSort(avaliacoes, middle + 1, right);
+
+            merge(avaliacoes, left, middle, right);
+        }
+    }
+
+    private void merge(List<AvaliacaoResponseDTO> avaliacoes, int left, int middle, int right) {
+        int n1 = middle - left + 1;
+        int n2 = right - middle;
+
+        AvaliacaoResponseDTO[] leftArray = new AvaliacaoResponseDTO[n1];
+        AvaliacaoResponseDTO[] rightArray = new AvaliacaoResponseDTO[n2];
+
+        for (int i = 0; i < n1; i++) {
+            leftArray[i] = avaliacoes.get(left + i);
+        }
+        for (int j = 0; j < n2; j++) {
+            rightArray[j] = avaliacoes.get(middle + 1 + j);
+        }
+
+        int i = 0, j = 0;
+        int k = left;
+
+        while (i < n1 && j < n2) {
+            if (leftArray[i].getEstrelas() <= rightArray[j].getEstrelas()) {
+                avaliacoes.set(k, leftArray[i]);
+                i++;
+            } else {
+                avaliacoes.set(k, rightArray[j]);
+                j++;
+            }
+            k++;
+        }
+
+        while (i < n1) {
+            avaliacoes.set(k, leftArray[i]);
+            i++;
+            k++;
+        }
+
+        while (j < n2) {
+            avaliacoes.set(k, rightArray[j]);
+            j++;
+            k++;
+        }
     }
 }
