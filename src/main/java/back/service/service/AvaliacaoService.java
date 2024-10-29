@@ -25,17 +25,15 @@ public class AvaliacaoService {
     private AvaliacaoRepository avaliacaoRepository;
 
     public void submitFormRating(AvaliacaoRequestDTO avaliacaoRequest) throws Exception {
-
         HttpClient client = HttpClient.newHttpClient();
         JSONObject body = new JSONObject();
-        body.put("form_id", avaliacaoRequest.getFId());
+        body.put("form_id", avaliacaoRequest.getJfId());
         body.put("answers", new JSONObject() {{
             put("control_star_rating", avaliacaoRequest.getEstrelas());
-
         }});
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(new URI("https://api.jotform.com/form/" + avaliacaoRequest.getFId() + "/submissions?apiKey=" + API_KEY))
+                .uri(new URI("https://api.jotform.com/form/" + avaliacaoRequest.getJfId() + "/submissions?apiKey=" + API_KEY))
                 .POST(HttpRequest.BodyPublishers.ofString(body.toString()))
                 .header("Content-Type", "application/json")
                 .build();
@@ -63,8 +61,8 @@ public class AvaliacaoService {
             JSONObject formJson = formsArray.getJSONObject(i);
             String formId = formJson.getString("id");
 
-            List<Integer> starRatings = getStarRatings(formId);
-            Avaliacao avaliacao = new Avaliacao(formId, starRatings);
+            int starRating = getStarRating(formId);
+            Avaliacao avaliacao = new Avaliacao(null, formId, starRating);
             avaliacaoRepository.save(avaliacao);
 
             avaliacaoResponseDTOs.add(AvaliacaoMapper.toDTO(avaliacao));
@@ -73,7 +71,7 @@ public class AvaliacaoService {
         return avaliacaoResponseDTOs;
     }
 
-    private List<Integer> getStarRatings(String formId) throws Exception {
+    private int getStarRating(String formId) throws Exception {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(new URI("https://api.jotform.com/form/" + formId + "/submissions?apiKey=" + API_KEY))
                 .GET()
@@ -83,7 +81,9 @@ public class AvaliacaoService {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         JSONArray submissionsArray = new JSONObject(response.body()).getJSONArray("content");
-        List<Integer> starRatings = new ArrayList<>();
+
+        int totalStars = 0;
+        int count = 0;
 
         for (int i = 0; i < submissionsArray.length(); i++) {
             JSONObject submissionJson = submissionsArray.getJSONObject(i);
@@ -93,50 +93,12 @@ public class AvaliacaoService {
                 JSONObject answer = answers.getJSONObject(key);
                 if ("control_star_rating".equals(answer.getString("type"))) {
                     int starRating = answer.getInt("answer");
-                    starRatings.add(starRating);
+                    totalStars += starRating;
+                    count++;
                 }
             }
         }
 
-        return starRatings;
-    }
-
-    private List<Integer> mergeSort(List<Integer> ratings) {
-        if (ratings.size() <= 1) {
-            return ratings;
-        }
-
-        int mid = ratings.size() / 2;
-        List<Integer> left = mergeSort(ratings.subList(0, mid));
-        List<Integer> right = mergeSort(ratings.subList(mid, ratings.size()));
-        return merge(left, right);
-    }
-
-    private List<Integer> merge(List<Integer> left, List<Integer> right) {
-        List<Integer> sorted = new ArrayList<>();
-        int i = 0, j = 0;
-
-        while (i < left.size() && j < right.size()) {
-            if (left.get(i) <= right.get(j)) {
-                sorted.add(left.get(i));
-                i++;
-            } else {
-                sorted.add(right.get(j));
-                j++;
-            }
-        }
-
-        while (i < left.size()) {
-            sorted.add(left.get(i));
-            i++;
-        }
-
-        while (j < right.size()) {
-            sorted.add(right.get(j));
-            j++;
-        }
-
-        return sorted;
+        return count > 0 ? totalStars / count : 0;
     }
 }
-
