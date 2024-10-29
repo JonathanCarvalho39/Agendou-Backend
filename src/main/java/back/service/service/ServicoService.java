@@ -81,11 +81,10 @@ public class ServicoService {
         try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
              OutputStreamWriter writer = new OutputStreamWriter(outputStream)) {
 
-            writer.write("ID;Nome;Descrição;Preço\n");
+            writer.write("Nome;Descrição;Preço\n");
 
             for (ServicoRequestDTO dto : servicoCsvDtos) {
-                writer.write(String.format("%d;%s;%s;%.2f\n",
-                        dto.getId(),
+                writer.write(String.format("%s;%s;%.2f\n",
                         dto.getNome(),
                         dto.getDescricao(),
                         dto.getPreco()));
