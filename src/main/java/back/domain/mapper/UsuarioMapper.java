@@ -1,6 +1,5 @@
 package back.domain.mapper;
 
-
 import back.domain.dto.request.UsuarioRequestDTO;
 import back.domain.dto.response.UsuarioResponseDTO;
 import back.domain.model.Usuario;
@@ -9,31 +8,32 @@ import org.springframework.stereotype.Component;
 @Component
 public class UsuarioMapper {
 
-    public Usuario toEntity(UsuarioRequestDTO requestDTO) throws Exception {
-        try {
+    public Usuario toEntity(UsuarioRequestDTO usuarioRequestDTO) {
+        Usuario result = null;
+        if (usuarioRequestDTO != null) {
             Usuario usuario = new Usuario();
-            usuario.setEmail(requestDTO.getEmail());
-            usuario.setNome(requestDTO.getNome());
-            usuario.setSenha(requestDTO.getSenha());
-            usuario.setTipo(requestDTO.getTipo());
-            return usuario;
-        } catch (Exception e) {
-            throw new Exception("Erro ao mapear UsuarioRequestDTO para entidade: " + e.getMessage());
+            usuario.setNome(usuarioRequestDTO.getNome());
+            usuario.setEmail(usuarioRequestDTO.getEmail());
+            usuario.setSenha(usuarioRequestDTO.getSenha());
+            usuario.setTelefone(usuarioRequestDTO.getTelefone());
+            result = usuario;
         }
+
+        return result;
     }
 
-
-    public UsuarioResponseDTO toDTO(Usuario entity) {
-        try {
-            UsuarioResponseDTO dto = new UsuarioResponseDTO();
-            dto.setId(entity.getId());
-            dto.setNome(entity.getNome());
-            dto.setEmail(entity.getEmail());
-            dto.setSenha(entity.getSenha());
-            dto.setTipo(entity.getTipo());
-            return dto;
-        } catch (Exception e) {
-            throw new RuntimeException("Não foi possível mapear o usuário para o DTO.", e);
+    public UsuarioResponseDTO toUsuarioResponseDto(Usuario usuario) {
+        if (usuario == null) {
+            return null;
         }
+
+        UsuarioResponseDTO usuarioResponseDTO = new UsuarioResponseDTO();
+        usuarioResponseDTO.setId(usuario.getId());
+        usuarioResponseDTO.setNome(usuario.getNome());
+        usuarioResponseDTO.setEmail(usuario.getEmail());
+        usuarioResponseDTO.setSenha(usuario.getSenha());
+        usuarioResponseDTO.setTelefone(usuario.getTelefone());
+
+        return usuarioResponseDTO;
     }
 }

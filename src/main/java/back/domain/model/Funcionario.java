@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "usuario")
-public class Usuario {
+@Table(name = "funcionario")
+public class Funcionario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_usuario")
+    @Column(name = "id_funcionario")
     private Integer id;
 
     @Column(name = "nome")
@@ -28,4 +28,8 @@ public class Usuario {
 
     @Column(name = "telefone")
     private String telefone;
+
+//    @ManyToOne
+//    @JoinColumn(name = "fk_empresa")
+//    private Empresa fk_empresa;
 }

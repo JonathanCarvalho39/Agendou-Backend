@@ -1,72 +1,78 @@
 package back.api.controller;
 
-
 import back.domain.dto.request.UsuarioRequestDTO;
 import back.domain.dto.response.UsuarioResponseDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import back.service.service.UsuarioService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/usuarios")
+@AllArgsConstructor
 @Validated
 public class UsuarioController {
 
-    @Autowired
-    private UsuarioService service;
+    private final UsuarioService service;
 
+    @Operation(summary = "Login usuário", description = "Realiza o login do usuário")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successful login"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized")
+    })
     @GetMapping("/login")
     public ResponseEntity<String> login(@RequestParam String email, @RequestParam String senha) {
         System.out.println("Recebida requisição de login com email: " + email);
-        try {
-            return service.login(email, senha);
-        } catch (Exception e) {
-            return ResponseEntity.status(401).body("E-mail ou senha inválido.");
-        }
+        return service.login(email, senha);
     }
 
+    @Operation(summary = "Lista de usuários", description = "Lista todos os usuários")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Usuários listados com sucesso",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = UsuarioResponseDTO.class)))
+    })
     @GetMapping("/listar")
     public ResponseEntity<List<UsuarioResponseDTO>> listarUsuarios() {
-        try {
-            return ResponseEntity.status(200).body(service.listarUsuarios());
-        } catch (Exception e) {
-            return ResponseEntity.status(400).build();
-        }
+        return ResponseEntity.status(200).body(service.listarUsuarios());
     }
 
+    @Operation(summary = "Cadastrar usuário", description = "Cadastrar um novo usuário")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Usuário cadastrado"),
+            @ApiResponse(responseCode = "400", description = "Erro no cadastro")
+    })
     @PostMapping("/cadastrar")
-    public ResponseEntity<String> cadastrarUsuario(@RequestBody @Valid UsuarioRequestDTO usuario) {
-        try {
-            service.cadastrarUsuario(usuario);
-            return ResponseEntity.status(201).body("Usuário cadastrado com sucesso!");
-        } catch (Exception e) {
-            return ResponseEntity.status(400).body("Ocorreu um erro durante o cadastro.");
-        }
+    public ResponseEntity<?> cadastrarUsuario(@RequestBody @Valid UsuarioRequestDTO usuario) {
+        return service.cadastrarUsuario(usuario);
     }
 
-    @PutMapping("/atualizar")
-    public ResponseEntity<String> atualizarUsuario(@RequestBody @Valid UsuarioRequestDTO usuario){
-        try {
-            service.atualizarUsuario(usuario);
-            return ResponseEntity.status(202).body("Usuário atualizado com sucesso.");
-        } catch (Exception e) {
-            return ResponseEntity.status(400).body("Ocorreu um erro durante a atualização do usuário.");
-        }
+    @Operation(summary = "Atualizar usuário", description = "Atualizar um usuário existente")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Usuário atualizado"),
+            @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
+    })
+    @PutMapping("/atualizar/{id}")
+    public ResponseEntity<?> atualizarUsuario(@RequestBody @Valid UsuarioRequestDTO usuario, @PathVariable Integer id) {
+        return service.atualizarUsuario(id, usuario);
     }
 
-    @DeleteMapping("/deletar")
-    public ResponseEntity<String> deletarUsuario(@RequestBody @Valid UsuarioRequestDTO usuario){
-        try{
-            service.deletarUsuario(usuario);
-            return ResponseEntity.status(202).body("Usuário deletado com sucesso.");
-        } catch (Exception e) {
-            return ResponseEntity.status(400).body("Ocorreu um erro durante a deleção do usuário.");
-        }
+    @Operation(summary = "Deletar usuário", description = "Deletar um usuário existente")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Usuário deletado"),
+            @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
+    })
+    @DeleteMapping("/deletar/{id}")
+    public ResponseEntity<?> deletarUsuario(@PathVariable Integer id) {
+        return service.deletarUsuario(id);
     }
 }

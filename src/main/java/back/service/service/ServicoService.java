@@ -6,6 +6,7 @@ import back.domain.model.Servico;
 import back.domain.repository.ServicoRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,8 +37,17 @@ public class ServicoService {
         }
     }
 
-    public void deletarServico(@Valid ServicoRequestDTO servico) {
-        repository.deleteById(servico.getId());
+    public ResponseEntity<?> deletarServico(Integer id) {
+        Optional<Servico> servicoExistente = repository.findById(id);
+
+        if (servicoExistente.isEmpty()){
+            return ResponseEntity.status(404).body("Serviço não encontrado.");
+        }
+
+        Servico servico = servicoExistente.get();
+        repository.delete(servico);
+
+        return ResponseEntity.status(200).body(servico);
     }
 
     public void cadastrarServico(@Valid ServicoRequestDTO servico) {
