@@ -14,6 +14,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
@@ -81,5 +85,23 @@ public class ServicoController {
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<?> deletarServico(@PathVariable Integer id){
         return service.deletarServico(id);
+    }
+
+    @GetMapping("/csv")
+    public ResponseEntity<String> downloadCsv() {
+        try {
+            byte[] csvContent = service.getServicosCsv();
+
+            Path filePath = Paths.get("src/main/resources/servicos.csv");
+
+            Files.createDirectories(filePath.getParent());
+            Files.write(filePath, csvContent);
+
+            return ResponseEntity.ok("Arquivo CSV salvo com sucesso em: " + filePath.toString());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body("Erro ao salvar o arquivo CSV.");
+        }
     }
 }

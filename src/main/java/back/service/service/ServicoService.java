@@ -2,6 +2,7 @@ package back.service.service;
 
 
 import back.domain.dto.request.ServicoRequestDTO;
+import back.domain.mapper.ServicoMapper;
 import back.domain.model.Servico;
 import back.domain.repository.ServicoRepository;
 import jakarta.validation.Valid;
@@ -9,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +21,8 @@ public class ServicoService {
 
     @Autowired
     private ServicoRepository repository;
+    @Autowired
+    private ServicoMapper mapper;
 
     public List<Servico> listarServicos() {
         return repository.findAll();
@@ -52,10 +58,41 @@ public class ServicoService {
 
     public void cadastrarServico(@Valid ServicoRequestDTO servico) {
         Servico novoServico = new Servico();
-        novoServico.setId(null);
+        novoServico.setId(servico.getId());
         novoServico.setNome(servico.getNome());
         novoServico.setPreco(servico.getPreco());
         novoServico.setDescricao(servico.getDescricao());
         repository.save(novoServico);
+    }
+
+    public byte[] getServicosCsv() throws IOException {
+
+        List<Servico> servicos = repository.findAll();
+        List<ServicoRequestDTO> servicoCsvDtos = servicos.stream()
+                .map(servico -> {
+                    try {
+                        return mapper.toDTO(servico);
+                    } catch (Exception e) {
+                        throw new RuntimeException("Erro ao mapear Servico para ServicoRequestDTO", e);
+                    }
+                })
+                .toList();
+
+        try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+             OutputStreamWriter writer = new OutputStreamWriter(outputStream)) {
+
+            writer.write("ID;Nome;Descrição;Preço\n");
+
+            for (ServicoRequestDTO dto : servicoCsvDtos) {
+                writer.write(String.format("%d;%s;%s;%.2f\n",
+                        dto.getId(),
+                        dto.getNome(),
+                        dto.getDescricao(),
+                        dto.getPreco()));
+            }
+
+            writer.flush();
+            return outputStream.toByteArray();
+        }
     }
 }
