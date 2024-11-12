@@ -1,5 +1,6 @@
 package back.service.service;
 
+import back.api.config.security.TokenService;
 import back.domain.dto.request.UsuarioRequestDTO;
 import back.domain.dto.response.UsuarioResponseDTO;
 import back.domain.mapper.UsuarioMapper;
@@ -8,6 +9,8 @@ import back.domain.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -21,21 +24,30 @@ public class UsuarioService {
 
     private final UsuarioRepository repository;
     private final UsuarioMapper mapper;
+    private final UsuarioRepository usuarioRepository;
+    private TokenService tokenService;
+    private PasswordEncoder passwordEncoder;
 
-    public ResponseEntity<String> login(String email, String senha){
+
+    public ResponseEntity<UsuarioResponseDTO> login(String email, String senha){
         System.out.println("Iniciando login para o email: " + email);
-        Optional<Usuario> optionalUsuario = repository.findByEmail(email);
+
+        Optional<Usuario> optionalUsuario = usuarioRepository.findByEmail(email);
+        var token = tokenService.generateToken(optionalUsuario.get());
+        System.out.println("Token: " + token);
+
         if(optionalUsuario.isEmpty()){
-            return ResponseEntity.status(401).body("Usuário não encontrado.");
+            return ResponseEntity.status(401).build();
         }
+
         Usuario usuarioEntity = optionalUsuario.get();
         UsuarioResponseDTO usuarioResponse = mapper.toUsuarioResponseDto(usuarioEntity);
 
-        if (!usuarioResponse.getSenha().equals(senha)) {
-            return ResponseEntity.status(401).body("Senha incorreta.");
+        if (!passwordEncoder.matches(senha,usuarioEntity.getPassword())) {
+            return ResponseEntity.status(401).build();
         }
 
-        return ResponseEntity.ok("Login realizado com sucesso!");
+        return ResponseEntity.ok(usuarioResponse);
     }
 
 
@@ -45,11 +57,14 @@ public class UsuarioService {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Email ja cadastrado");
         }
 
+        String encryptedPassword = passwordEncoder.encode(dto.getSenha());
+
         Usuario usuario = mapper.toEntity(dto);
         usuario.setNome(dto.getNome());
-        usuario.setSenha(dto.getSenha());
+        usuario.setSenha(encryptedPassword);
         usuario.setEmail(dto.getEmail());
         usuario.setTelefone(dto.getTelefone());
+        usuario.setRole(dto.getRole());
         Usuario usuarioSalvo = repository.save(usuario);
 
         UsuarioResponseDTO responseDTO = mapper.toUsuarioResponseDto(usuarioSalvo);
