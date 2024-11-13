@@ -9,6 +9,8 @@ import back.domain.mapper.UsuarioMapper;
 import back.domain.model.Usuario;
 import back.domain.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,6 +31,8 @@ public class UsuarioService {
     private TokenService tokenService;
     private PasswordEncoder passwordEncoder;
 
+    private static final Logger logger = LoggerFactory.getLogger(UsuarioService.class);
+
 
     public ResponseEntity<?> login(String email, String senha){
         System.out.println("Iniciando login para o email: " + email);
@@ -38,6 +42,7 @@ public class UsuarioService {
         System.out.println("Token: " + token);
 
         if(optionalUsuario.isEmpty()){
+            logger.error("Falha na autenticação do usuário: o usuário está vazio ou não existe");
             return ResponseEntity.status(401).build();
         }
 
@@ -46,6 +51,7 @@ public class UsuarioService {
         LoginUserResponseDTO loginDTO = new LoginUserResponseDTO(usuarioResponse, token);
 
         if (!passwordEncoder.matches(senha,usuarioEntity.getPassword())) {
+            logger.error("Falha na autenticação da senha: a senha está vazia ou incorreta");
             return ResponseEntity.status(401).build();
         }
 
@@ -70,6 +76,14 @@ public class UsuarioService {
         Usuario usuarioSalvo = repository.save(usuario);
 
         UsuarioResponseDTO responseDTO = mapper.toUsuarioResponseDto(usuarioSalvo);
+
+        if (responseDTO == null) {
+            logger.error("Falha ao cadastrar o usuário: o usuário está vazio");
+            return ResponseEntity.status(400).build();
+        }
+
+        logger.info("Usuário cadastrado com sucesso: " + responseDTO.getEmail());
+
         System.out.println("usuario: " + responseDTO);
 
         return ResponseEntity
