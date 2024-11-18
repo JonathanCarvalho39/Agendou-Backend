@@ -42,7 +42,7 @@ public class UsuarioService {
         System.out.println("Token: " + token);
 
         if(optionalUsuario.isEmpty()){
-            logger.error("Falha na autenticação do usuário: o usuário está vazio ou não existe");
+            logger.error("Falha na autenticação do usuário: O usuário está vazio ou não existe");
             return ResponseEntity.status(401).build();
         }
 
@@ -51,7 +51,7 @@ public class UsuarioService {
         LoginUserResponseDTO loginDTO = new LoginUserResponseDTO(usuarioResponse, token);
 
         if (!passwordEncoder.matches(senha,usuarioEntity.getPassword())) {
-            logger.error("Falha na autenticação da senha: a senha está vazia ou incorreta");
+            logger.error("Falha na autenticação da senha: A senha está vazia ou incorreta");
             return ResponseEntity.status(401).build();
         }
 
@@ -78,7 +78,7 @@ public class UsuarioService {
         UsuarioResponseDTO responseDTO = mapper.toUsuarioResponseDto(usuarioSalvo);
 
         if (responseDTO == null) {
-            logger.error("Falha ao cadastrar o usuário: o usuário está vazio");
+            logger.error("Falha ao cadastrar o usuário: O usuário está vazio");
             return ResponseEntity.status(400).build();
         }
 
@@ -104,6 +104,7 @@ public class UsuarioService {
         Optional<Usuario> usuarioExistente = repository.findById(id);
 
         if (usuarioExistente.isEmpty()) {
+            logger.error("Falha ao atualizar o usuário: Usuário não encontrado");
             return ResponseEntity.status(404).body("Usuário não encontrado.");
         }
 
@@ -123,10 +124,12 @@ public class UsuarioService {
         Optional<Usuario> usuarioExistente = repository.findById(id);
 
         if (usuarioExistente.isEmpty()) {
+            logger.error("Falha ao deletar o usuário: Usuário não encontrado");
             return ResponseEntity.status(404).body("Usuário não encontrado.");
         }
 
         Usuario usuario = usuarioExistente.get();
+        logger.info("Usuário deletado com sucesso: " + usuario.getEmail());
         repository.delete(usuario);
 
         return ResponseEntity.status(200).body(usuario);
