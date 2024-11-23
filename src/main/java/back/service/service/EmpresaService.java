@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,6 +24,7 @@ public class EmpresaService {
 
     public ResponseEntity<String> login(String email, String senha){
         System.out.println("Iniciando login para o email: " + email);
+
         Optional<Empresa> optionalEmpresa = repository.findByEmail(email);
         if(optionalEmpresa.isEmpty()){
             return ResponseEntity.status(401).body("Empresa não encontrada.");

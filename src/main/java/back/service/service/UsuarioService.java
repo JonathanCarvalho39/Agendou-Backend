@@ -2,6 +2,7 @@ package back.service.service;
 
 import back.api.config.security.TokenService;
 import back.domain.dto.request.UsuarioRequestDTO;
+import back.domain.dto.response.LoginResponseDTO;
 import back.domain.dto.response.UsuarioResponseDTO;
 import back.domain.mapper.UsuarioMapper;
 import back.domain.model.Usuario;
@@ -9,7 +10,6 @@ import back.domain.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -29,7 +29,7 @@ public class UsuarioService {
     private PasswordEncoder passwordEncoder;
 
 
-    public ResponseEntity<UsuarioResponseDTO> login(String email, String senha){
+    public ResponseEntity<?> login(String email, String senha){
         System.out.println("Iniciando login para o email: " + email);
 
         Optional<Usuario> optionalUsuario = usuarioRepository.findByEmail(email);
@@ -42,12 +42,13 @@ public class UsuarioService {
 
         Usuario usuarioEntity = optionalUsuario.get();
         UsuarioResponseDTO usuarioResponse = mapper.toUsuarioResponseDto(usuarioEntity);
+        LoginResponseDTO loginDTO = new LoginResponseDTO(usuarioResponse, token);
 
         if (!passwordEncoder.matches(senha,usuarioEntity.getPassword())) {
             return ResponseEntity.status(401).build();
         }
 
-        return ResponseEntity.ok(usuarioResponse);
+        return ResponseEntity.ok(loginDTO);
     }
 
 
