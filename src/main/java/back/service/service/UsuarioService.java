@@ -3,6 +3,7 @@ package back.service.service;
 import back.api.config.security.TokenService;
 import back.domain.dto.request.UsuarioRequestDTO;
 import back.domain.dto.response.LoginResponseDTO;
+import back.domain.dto.response.LoginUserResponseDTO;
 import back.domain.dto.response.UsuarioResponseDTO;
 import back.domain.mapper.UsuarioMapper;
 import back.domain.model.Usuario;
@@ -33,7 +34,7 @@ public class UsuarioService {
         System.out.println("Iniciando login para o email: " + email);
 
         Optional<Usuario> optionalUsuario = usuarioRepository.findByEmail(email);
-        var token = tokenService.generateToken(optionalUsuario.get());
+        var token = tokenService.generateTokenUser(optionalUsuario.get());
         System.out.println("Token: " + token);
 
         if(optionalUsuario.isEmpty()){
@@ -42,7 +43,7 @@ public class UsuarioService {
 
         Usuario usuarioEntity = optionalUsuario.get();
         UsuarioResponseDTO usuarioResponse = mapper.toUsuarioResponseDto(usuarioEntity);
-        LoginResponseDTO loginDTO = new LoginResponseDTO(usuarioResponse, token);
+        LoginUserResponseDTO loginDTO = new LoginUserResponseDTO(usuarioResponse, token);
 
         if (!passwordEncoder.matches(senha,usuarioEntity.getPassword())) {
             return ResponseEntity.status(401).build();
