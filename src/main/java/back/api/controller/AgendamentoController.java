@@ -28,8 +28,19 @@ public class AgendamentoController {
     })
     @PostMapping("/cadastrar")
     public ResponseEntity<?> agendar(@RequestBody @Valid AgendamentoRequestDTO agendamento) {
-        System.out.println("Recebida requisição de agendamento com data e hora: " + agendamento.getDataHoraCorte() + agendamento.hashCode());
+        System.out.println("Recebida requisição de agendamento com data e hora: " + agendamento.getData() + agendamento.hashCode());
         return service.agendar(agendamento);
+    }
+
+    @Operation(summary = "Listar agendamentos do usuário", description = "Lista todos os agendamentos de um usuário específico")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Agendamentos listados com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
+    })
+    @GetMapping("/{usuarioId}")
+    public ResponseEntity<List<AgendamentoResponseDTO>> listarAgendamentosPorUsuario(@PathVariable Integer usuarioId) {
+        List<AgendamentoResponseDTO> agendamentos = service.listarAgendamentosPorFuncionario(usuarioId);
+        return ResponseEntity.ok(agendamentos);
     }
 
     @Operation(summary = "Atualizar agendamento", description = "Atualiza um agendamento existente")

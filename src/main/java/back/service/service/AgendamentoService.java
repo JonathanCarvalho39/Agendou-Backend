@@ -27,13 +27,11 @@ public class AgendamentoService {
 
     public ResponseEntity<?> agendar(AgendamentoRequestDTO agendamentoRequest) {
 
-        if (repository.findByDataHoraCorte(agendamentoRequest.getDataHoraCorte()).isPresent()) {
+        if (repository.findByData(agendamentoRequest.getData()).isPresent()) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Horário já agendado");
         }
 
         Agendamento agendamento = mapper.toEntity(agendamentoRequest);
-        agendamento.setDataHoraCorte(agendamentoRequest.getDataHoraCorte());
-        agendamento.setProfissional(agendamentoRequest.getProfissional());
         Agendamento agendamentoSalvo = repository.save(agendamento);
 
         AgendamentoResponseDTO responseDTO = mapper.toAgendamentoResponseDto(agendamentoSalvo);
@@ -48,6 +46,15 @@ public class AgendamentoService {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(responseDTO);
+    }
+
+    public List<AgendamentoResponseDTO> listarAgendamentosPorFuncionario(Integer funcionarioId) {
+        List<Agendamento> agendamentos = repository.findAllByFkFuncionarioId(funcionarioId);
+
+        // Convert to DTO
+        return agendamentos.stream()
+                .map(mapper::toAgendamentoResponseDto)
+                .collect(Collectors.toList());
     }
 
     public List<AgendamentoResponseDTO> listarAgendamentos() {
@@ -66,8 +73,8 @@ public class AgendamentoService {
         }
 
         Agendamento agendamento = agendamentoExistente.get();
-        agendamento.setProfissional(agendamentoRequest.getProfissional());
-        agendamento.setDataHoraCorte(agendamentoRequest.getDataHoraCorte());
+        agendamento.setData(agendamentoRequest.getData());
+        agendamento.setFkServicos(agendamentoRequest.getFkServicos());
 
         repository.save(agendamento);
 
@@ -83,7 +90,7 @@ public class AgendamentoService {
         }
 
         Agendamento agendamento = agendamentoExistente.get();
-        logger.info("Agendamento deletado com sucesso: " + agendamento.getDataHoraCorte());
+        logger.info("Agendamento deletado com sucesso: " + agendamento.getData());
         repository.delete(agendamento);
 
         return ResponseEntity.status(200).body(agendamento);

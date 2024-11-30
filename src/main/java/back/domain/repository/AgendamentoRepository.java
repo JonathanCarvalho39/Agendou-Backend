@@ -10,7 +10,6 @@ import java.util.Optional;
 
 public interface AgendamentoRepository extends JpaRepository<Agendamento, Integer> {
 
-    List<Agendamento> findByDataHoraCorteBetween(LocalDateTime inicio, LocalDateTime fim);
-
-    Optional<Agendamento> findByDataHoraCorte(LocalDateTime dataHoraCorte);
+    Optional<Agendamento> findByData(LocalDateTime data);
+    List<Agendamento> findAllByFkFuncionarioId(Integer idFuncionario);
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,10 +20,22 @@ public class Agendamento {
     @Column(name = "id_agendamento")
     private Integer id;
 
-    @Column(name = "profissional")
-    private String profissional;
-
     @Column(name = "data")
-    private LocalDateTime dataHoraCorte;
+    private LocalDateTime data;
 
+    @ManyToOne
+    @JoinColumn(name = "fk_funcionario")
+    private Funcionario fkFuncionario;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_usuario")
+    private Usuario fkUsuario;
+
+    @OneToMany
+    @JoinColumn(name = "fk_servico")
+    private List<Servico> fkServicos;
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "fk_avaliacao")
+    private Avaliacao fkAvaliacao;
 }
