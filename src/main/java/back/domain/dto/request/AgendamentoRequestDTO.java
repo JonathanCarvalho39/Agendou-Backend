@@ -18,9 +18,7 @@ public class AgendamentoRequestDTO {
 
     private Integer id;
     private LocalDateTime data;
-    private Funcionario fkFuncionario;
-    private Usuario fkUsuario;
-    private List<Servico> fkServicos;
-    private Avaliacao fkAvaliacao;
-
+    private Integer fkFuncionario;
+    private Integer fkUsuario;
+    private List<Integer> fkServicos;
 }

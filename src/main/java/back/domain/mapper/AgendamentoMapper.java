@@ -18,20 +18,27 @@ public class AgendamentoMapper {
         agendamento.setId(agendamentoRequestDTO.getId());
         agendamento.setData(agendamentoRequestDTO.getData());
 
-        Funcionario funcionario = new Funcionario();
-        funcionario.setId(agendamentoRequestDTO.getFkFuncionario().getId());
-        agendamento.setFkFuncionario(funcionario);
+        if (agendamentoRequestDTO.getFkFuncionario() != null) {
+            Funcionario funcionario = new Funcionario();
+            funcionario.setId(agendamentoRequestDTO.getFkFuncionario());
+            agendamento.setFkFuncionario(funcionario);
+        }
 
-        Usuario usuario = new Usuario();
-        usuario.setId(agendamentoRequestDTO.getFkUsuario().getId());
-        agendamento.setFkUsuario(usuario);
+        if (agendamentoRequestDTO.getFkUsuario() != null) {
+            Usuario usuario = new Usuario();
+            usuario.setId(agendamentoRequestDTO.getFkUsuario());
+            agendamento.setFkUsuario(usuario);
+        }
 
-        List<Servico> servicos = agendamentoRequestDTO.getFkServicos();
-        agendamento.setFkServicos(servicos);
-
-        Avaliacao avaliacao = new Avaliacao();
-        avaliacao.setAId(agendamentoRequestDTO.getFkAvaliacao().getAId());
-        agendamento.setFkAvaliacao(avaliacao);
+        if (agendamentoRequestDTO.getFkServicos() != null) {
+            List<Servico> servicos = agendamentoRequestDTO.getFkServicos().stream()
+                    .map(id -> {
+                        Servico servico = new Servico();
+                        servico.setId(id);
+                        return servico;
+                    }).toList();
+            agendamento.setFkServicos(servicos);
+        }
 
         return agendamento;
     }

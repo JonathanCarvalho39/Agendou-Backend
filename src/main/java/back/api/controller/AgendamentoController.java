@@ -2,6 +2,7 @@ package back.api.controller;
 
 import back.domain.dto.request.AgendamentoRequestDTO;
 import back.domain.dto.response.AgendamentoResponseDTO;
+import back.domain.dto.response.AgendamentoSimplesResponseDTO;
 import back.domain.model.Agendamento;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,4 +75,17 @@ public class AgendamentoController {
     public ResponseEntity<List<AgendamentoResponseDTO>> listarAgendamentos() {
         return ResponseEntity.status(200).body(service.listarAgendamentos());
     }
+
+    @Operation(summary = "Listar agendamentos simples", description = "Lista todos os agendamentos com nome do cliente e a data")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Agendamentos listados com sucesso",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Agendamento.class))),
+            @ApiResponse(responseCode = "400", description = "Erro ao listar agendamentos")
+    })
+    @GetMapping("/listar-simples")
+    public ResponseEntity<List<AgendamentoSimplesResponseDTO>> listarAgendamentosSimples() {
+        return ResponseEntity.status(200).body(service.listarAgendamentosSimples());
+    }
+
 }
