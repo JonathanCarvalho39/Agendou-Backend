@@ -5,9 +5,13 @@ import back.domain.dto.response.AgendamentoResponseDTO;
 import back.domain.dto.response.AgendamentoSimplesResponseDTO;
 import back.domain.mapper.AgendamentoMapper;
 import back.domain.model.Agendamento;
+import back.domain.model.Funcionario;
 import back.domain.model.Servico;
+import back.domain.model.Usuario;
 import back.domain.repository.AgendamentoRepository;
+import back.domain.repository.FuncionarioRepository;
 import back.domain.repository.ServicoRepository;
+import back.domain.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,8 +30,10 @@ public class AgendamentoService {
     private final AgendamentoRepository repository;
     private final AgendamentoMapper mapper;
     private final ServicoRepository servicoRepository;
+    private final FuncionarioRepository funcionarioRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(AgendamentoService.class);
+    private final UsuarioRepository usuarioRepository;
 
     public ResponseEntity<?> agendar(AgendamentoRequestDTO agendamentoRequest) {
 
@@ -70,9 +76,28 @@ public class AgendamentoService {
 
     public List<AgendamentoSimplesResponseDTO> listarAgendamentosSimples() {
         List<Agendamento> agendamentos = repository.findAll();
-        return agendamentos.stream()
-                .map(agendamento -> new AgendamentoSimplesResponseDTO(agendamento.getFkUsuario().getNome(), agendamento.getData()))
-                .collect(Collectors.toList());
+
+        return agendamentos.stream().map(agendamento -> {
+            String funcionario = Optional.ofNullable(agendamento.getFkFuncionario())
+                    .map(Funcionario::getNome)
+                    .orElse("Nome não disponível");
+
+            String usuario = Optional.ofNullable(agendamento.getFkUsuario())
+                    .map(Usuario::getNome)
+                    .orElse("Nome não disponível");
+
+            String servico = Optional.ofNullable(agendamento.getFkServico())
+                    .map(Servico::getNome)
+                    .orElse("Nome não disponível");
+
+            return new AgendamentoSimplesResponseDTO(
+                    agendamento.getId(),
+                    agendamento.getData(),
+                    funcionario,
+                    usuario,
+                    servico
+            );
+        }).toList();
     }
 
     public ResponseEntity<?> atualizarAgendamento(Integer id, AgendamentoRequestDTO agendamentoRequest) {
@@ -84,19 +109,32 @@ public class AgendamentoService {
         }
 
         Agendamento agendamento = agendamentoExistente.get();
+
         agendamento.setData(agendamentoRequest.getData());
 
-        List<Servico> servicos = servicoRepository.findAllById(agendamentoRequest.getFkServicos());
-        if (servicos.size() != agendamentoRequest.getFkServicos().size()) {
-            return ResponseEntity.status(400).body("Um ou mais serviços não foram encontrados.");
+        Optional<Servico> servico = servicoRepository.findById(agendamentoRequest.getFkServico());
+        if (servico.isEmpty()) {
+            return ResponseEntity.status(400).body("Serviço não encontrado.");
         }
+        agendamento.setFkServico(servico.get());
 
-        agendamento.setFkServicos(servicos);
+        Optional<Usuario> usuario = usuarioRepository.findById(agendamentoRequest.getFkUsuario());
+        if (usuario.isEmpty()) {
+            return ResponseEntity.status(400).body("Usuário não encontrado.");
+        }
+        agendamento.setFkUsuario(usuario.get());
+
+        Optional<Funcionario> funcionario = funcionarioRepository.findById(agendamentoRequest.getFkFuncionario());
+        if (funcionario.isEmpty()) {
+            return ResponseEntity.status(400).body("Funcionário não encontrado.");
+        }
+        agendamento.setFkFuncionario(funcionario.get());
 
         repository.save(agendamento);
 
         return ResponseEntity.status(200).body(mapper.toAgendamentoResponseDto(agendamento));
     }
+
 
     public ResponseEntity<?> removerAgendamento(Integer id) {
         Optional<Agendamento> agendamentoExistente = repository.findById(id);

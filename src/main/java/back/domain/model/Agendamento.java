@@ -31,9 +31,9 @@ public class Agendamento {
     @JoinColumn(name = "fk_usuario")
     private Usuario fkUsuario;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "fk_servico")
-    private List<Servico> fkServicos;
+    private Servico fkServico;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "fk_avaliacao")

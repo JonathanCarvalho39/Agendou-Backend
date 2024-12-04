@@ -20,6 +20,6 @@ public class AgendamentoResponseDTO {
         private LocalDateTime data;
         private Funcionario fkFuncionario;
         private Usuario fkUsuario;
-        private List<Servico> fkServicos;
+        private Servico fkServico;
         private Avaliacao fkAvaliacao;
 }

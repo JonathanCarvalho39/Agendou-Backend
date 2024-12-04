@@ -3,6 +3,7 @@ package back.domain.dto.response;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
 
@@ -10,6 +11,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 public class AgendamentoSimplesResponseDTO {
-    private String usuarioNome;
+    private Integer id;
     private LocalDateTime data;
+    private String funcionario;
+    private String usuario;
+    private String servico;
 }

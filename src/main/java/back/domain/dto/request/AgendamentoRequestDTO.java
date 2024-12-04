@@ -20,5 +20,5 @@ public class AgendamentoRequestDTO {
     private LocalDateTime data;
     private Integer fkFuncionario;
     private Integer fkUsuario;
-    private List<Integer> fkServicos;
+    private Integer fkServico;
 }
