@@ -2,7 +2,6 @@ package back.service.service;
 
 import back.domain.dto.request.AgendamentoRequestDTO;
 import back.domain.dto.response.AgendamentoResponseDTO;
-import back.domain.dto.response.AgendamentoSimplesResponseDTO;
 import back.domain.mapper.AgendamentoMapper;
 import back.domain.model.Agendamento;
 import back.domain.model.Funcionario;
@@ -74,30 +73,18 @@ public class AgendamentoService {
                 .collect(Collectors.toList());
     }
 
-    public List<AgendamentoSimplesResponseDTO> listarAgendamentosSimples() {
-        List<Agendamento> agendamentos = repository.findAll();
+    public ResponseEntity<?> buscarAgendamentoPorId(Integer id) {
+        Optional<Agendamento> agendamentoExistente = repository.findById(id);
 
-        return agendamentos.stream().map(agendamento -> {
-            String funcionario = Optional.ofNullable(agendamento.getFkFuncionario())
-                    .map(Funcionario::getNome)
-                    .orElse("Nome não disponível");
+        if (agendamentoExistente.isEmpty()) {
+            logger.error("Agendamento com id " + id + " não encontrado");
+            return ResponseEntity.status(404).body("Agendamento não encontrado");
+        }
 
-            String usuario = Optional.ofNullable(agendamento.getFkUsuario())
-                    .map(Usuario::getNome)
-                    .orElse("Nome não disponível");
+        Agendamento agendamento = agendamentoExistente.get();
+        AgendamentoResponseDTO responseDTO = mapper.toAgendamentoResponseDto(agendamento);
 
-            String servico = Optional.ofNullable(agendamento.getFkServico())
-                    .map(Servico::getNome)
-                    .orElse("Nome não disponível");
-
-            return new AgendamentoSimplesResponseDTO(
-                    agendamento.getId(),
-                    agendamento.getData(),
-                    funcionario,
-                    usuario,
-                    servico
-            );
-        }).toList();
+        return ResponseEntity.status(200).body(responseDTO);
     }
 
     public ResponseEntity<?> atualizarAgendamento(Integer id, AgendamentoRequestDTO agendamentoRequest) {

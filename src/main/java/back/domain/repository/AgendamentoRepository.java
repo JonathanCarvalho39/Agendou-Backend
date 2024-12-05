@@ -13,4 +13,6 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento, Intege
     Optional<Agendamento> findByData(LocalDateTime data);
     List<Agendamento> findAllByFkFuncionarioId(Integer idFuncionario);
     List<Agendamento> findAll();
+    Optional<Agendamento> findById(Integer id);
+
 }

@@ -2,7 +2,6 @@ package back.api.controller;
 
 import back.domain.dto.request.AgendamentoRequestDTO;
 import back.domain.dto.response.AgendamentoResponseDTO;
-import back.domain.dto.response.AgendamentoSimplesResponseDTO;
 import back.domain.model.Agendamento;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,16 +75,17 @@ public class AgendamentoController {
         return ResponseEntity.status(200).body(service.listarAgendamentos());
     }
 
-    @Operation(summary = "Listar agendamentos simples", description = "Lista todos os agendamentos com nome do cliente e a data")
+    @Operation(summary = "Listar agendamento pelo id", description = "Lista as informações do agendamento pelo id.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Agendamentos listados com sucesso",
+            @ApiResponse(responseCode = "200", description = "Agendamento encontrado.",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = Agendamento.class))),
-            @ApiResponse(responseCode = "400", description = "Erro ao listar agendamentos")
+            @ApiResponse(responseCode = "404", description = "Agendamento não encontrado.")
     })
-    @GetMapping("/listar-simples")
-    public ResponseEntity<List<AgendamentoSimplesResponseDTO>> listarAgendamentosSimples() {
-        return ResponseEntity.status(200).body(service.listarAgendamentosSimples());
+    @GetMapping("/agendamentos/{id}")
+    public ResponseEntity<?> getAgendamentoById(@PathVariable Integer id) {
+        return service.buscarAgendamentoPorId(id);
     }
+
 
 }
