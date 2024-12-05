@@ -82,7 +82,7 @@ public class AgendamentoController {
                             schema = @Schema(implementation = Agendamento.class))),
             @ApiResponse(responseCode = "404", description = "Agendamento não encontrado.")
     })
-    @GetMapping("/agendamentos/{id}")
+    @GetMapping("/listar/{id}")
     public ResponseEntity<?> getAgendamentoById(@PathVariable Integer id) {
         return service.buscarAgendamentoPorId(id);
     }
