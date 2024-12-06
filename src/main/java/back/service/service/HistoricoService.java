@@ -41,4 +41,33 @@ public class HistoricoService {
                 .map(mapper::toHistoricoResponseDto)
                 .collect(Collectors.toList());
     }
+
+    public List<HistoricoResponseDTO> listarAgendamentosFuturos(LocalDateTime dataInicio) {
+        LocalDateTime agora = LocalDateTime.now();
+
+        if (dataInicio.isBefore(agora)) {
+            throw new IllegalArgumentException("Data inválida: não é permitido consultar datas anteriores ao momento atual.");
+        }
+
+        List<HistoricoAgendamento> agendamentosFuturos = repository.findByDataAfter(dataInicio);
+
+        return agendamentosFuturos.stream()
+                .map(mapper::toHistoricoResponseDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<HistoricoResponseDTO> listarAgendamentosPassados(LocalDateTime dataInicio) {
+        LocalDateTime agora = LocalDateTime.now();
+
+        if (dataInicio.isAfter(agora)) {
+            throw new IllegalArgumentException("Data inválida: a data inicial não pode ser no futuro.");
+        }
+
+        List<HistoricoAgendamento> agendamentosPassados = repository.findByDataBetween(dataInicio, agora);
+
+        return agendamentosPassados.stream()
+                .map(mapper::toHistoricoResponseDto)
+                .collect(Collectors.toList());
+    }
+
 }

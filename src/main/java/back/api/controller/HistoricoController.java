@@ -7,10 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -54,4 +51,27 @@ public class HistoricoController {
         List<HistoricoResponseDTO> historico = service.obterTodoHistorico();
         return ResponseEntity.ok(historico);
     }
+
+    @Operation(summary = "Listar agendamentos futuros", description = "Lista todos os agendamentos futuros a partir de uma data específica")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Agendamentos obtidos com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Data inválida fornecida")
+    })
+    @PostMapping("/agendamentos-futuros")
+    public ResponseEntity<List<HistoricoResponseDTO>> listarAgendamentosFuturos(@RequestBody LocalDateTime dataInicio) {
+        List<HistoricoResponseDTO> agendamentosFuturos = service.listarAgendamentosFuturos(dataInicio);
+        return ResponseEntity.ok(agendamentosFuturos);
+    }
+
+    @Operation(summary = "Listar agendamentos passados", description = "Lista todos os agendamentos do passado desde uma data específica até o momento atual")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Agendamentos obtidos com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Data inválida fornecida")
+    })
+    @PostMapping("/agendamentos-passados")
+    public ResponseEntity<List<HistoricoResponseDTO>> listarAgendamentosPassados(@RequestBody LocalDateTime dataInicio) {
+        List<HistoricoResponseDTO> agendamentosPassados = service.listarAgendamentosPassados(dataInicio);
+        return ResponseEntity.ok(agendamentosPassados);
+    }
+
 }
