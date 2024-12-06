@@ -2,6 +2,7 @@ package back.api.controller;
 
 import back.domain.dto.request.UsuarioRequestDTO;
 import back.domain.dto.response.UsuarioResponseDTO;
+import back.domain.model.Agendamento;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -44,6 +45,18 @@ public class UsuarioController {
     @GetMapping("/listar")
     public ResponseEntity<List<UsuarioResponseDTO>> listarUsuarios() {
         return ResponseEntity.status(200).body(service.listarUsuarios());
+    }
+
+    @Operation(summary = "Listar agendamento pelo id", description = "Lista as informações do agendamento pelo id.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Agendamento encontrado.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Agendamento.class))),
+            @ApiResponse(responseCode = "404", description = "Agendamento não encontrado.")
+    })
+    @GetMapping("/listar/{id}")
+    public ResponseEntity<?> getUsuarioById(@PathVariable Integer id) {
+        return service.buscarUsuarioPorID(id);
     }
 
     @Operation(summary = "Cadastrar usuário", description = "Cadastrar um novo usuário")

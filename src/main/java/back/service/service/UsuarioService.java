@@ -2,10 +2,12 @@ package back.service.service;
 
 import back.api.config.security.TokenService;
 import back.domain.dto.request.UsuarioRequestDTO;
+import back.domain.dto.response.AgendamentoResponseDTO;
 import back.domain.dto.response.LoginResponseDTO;
 import back.domain.dto.response.LoginUserResponseDTO;
 import back.domain.dto.response.UsuarioResponseDTO;
 import back.domain.mapper.UsuarioMapper;
+import back.domain.model.Agendamento;
 import back.domain.model.Usuario;
 import back.domain.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
@@ -100,6 +102,19 @@ public class UsuarioService {
                 .collect(Collectors.toList());
     }
 
+    public ResponseEntity<?> buscarUsuarioPorID(Integer id) {
+        Optional<Usuario> usuarioExistente = repository.findById(id);
+
+        if (usuarioExistente.isEmpty()) {
+            logger.error("Usuario com id " + id + " não encontrado");
+            return ResponseEntity.status(404).body("Agendamento não encontrado");
+        }
+
+        Usuario usuario = usuarioExistente.get();
+        UsuarioResponseDTO responseDTO = mapper.toUsuarioResponseDto(usuario);
+
+        return ResponseEntity.status(200).body(responseDTO);
+    }
 
     public ResponseEntity<?> atualizarUsuario(Integer id, UsuarioRequestDTO usuarioRequest) {
         Optional<Usuario> usuarioExistente = repository.findById(id);
@@ -113,9 +128,11 @@ public class UsuarioService {
         usuario.setNome(usuarioRequest.getNome());
         usuario.setEmail(usuarioRequest.getEmail());
         usuario.setSenha(usuarioRequest.getSenha());
-        usuario.setTelefone(usuario.getTelefone());
+        usuario.setTelefone(usuarioRequest.getTelefone());
 
         repository.save(usuario);
+
+        System.out.println("Telefone após a atualização: " + usuario.getTelefone());
 
         return ResponseEntity.status(200).body(mapper.toUsuarioResponseDto(usuario));
     }
