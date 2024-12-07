@@ -18,12 +18,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/historico")
@@ -119,25 +122,49 @@ public class HistoricoController {
     }
 
 
-    @Operation(summary = "Obter usuários ativos", description = "Obtém a lista de usuários que possuem 4 ou mais agendamentos em um intervalo de tempo")
+    @Operation(summary = "Obter usuários ativos", description = "Obtém a lista de usuários que possuem 4 ou mais agendamentos em um intervalo de 2 meses")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuários ativos obtidos com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Erro ao obter usuários ativos"),
             @ApiResponse(responseCode = "404", description = "Nenhum usuário encontrado no período")
     })
     @GetMapping("/usuarios-ativos")
-    public ResponseEntity<List<String>> obterUsuariosAtivos(
-            @RequestParam("dataInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicio,
-            @RequestParam("dataFim") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFim) {
-
-        List<String> usuariosAtivos = service.buscarUsuariosAtivos(dataInicio, dataFim);
+    public ResponseEntity<List<String>> obterUsuariosAtivos() {
+        List<String> usuariosAtivos = service.buscarUsuariosAtivos();
 
         if (usuariosAtivos.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(usuariosAtivos); // Retorna 404 se nenhum usuário for encontrado
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(usuariosAtivos);
         }
 
-        return ResponseEntity.ok(usuariosAtivos); // Retorna 200 com os usuários ativos
+        return ResponseEntity.ok(usuariosAtivos);
     }
+
+
+
+    @Operation(summary = "Obter agendamentos do último mês", description = "Retorna o total de agendamentos e o intervalo do mês anterior")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Agendamentos do último mês retornados com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Nenhum agendamento encontrado no último mês")
+    })
+    @GetMapping("/agendamentos-ultimo-mes")
+    public ResponseEntity<Map<String, Object>> obterAgendamentosUltimoMes() {
+        List<HistoricoResponseDTO> agendamentos = service.obterAgendamentosUltimoMes();
+
+        if (agendamentos.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of(
+                    "mensagem", "Nenhum agendamento encontrado no último mês",
+                    "dataInicio", LocalDate.now().minusMonths(1).withDayOfMonth(1),
+                    "dataFim", LocalDate.now().minusMonths(1).with(TemporalAdjusters.lastDayOfMonth())
+            ));
+        }
+
+        return ResponseEntity.ok(Map.of(
+                "agendamentos", agendamentos,
+                "dataInicio", LocalDate.now().minusMonths(1).withDayOfMonth(1),
+                "dataFim", LocalDate.now().minusMonths(1).with(TemporalAdjusters.lastDayOfMonth())
+        ));
+    }
+
+
 
     @GetMapping("/csv")
     public ResponseEntity<byte[]> downloadCsv(

@@ -15,7 +15,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -117,8 +120,28 @@ public class HistoricoService {
                 .collect(Collectors.toList());
     }
 
-    public List<String> buscarUsuariosAtivos(LocalDateTime dataInicio, LocalDateTime dataFim) {
+    public List<String> buscarUsuariosAtivos() {
+        LocalDateTime dataInicio = LocalDateTime.now().minusMonths(2);
+
+        LocalDateTime dataFim = LocalDateTime.now();
+
         return repository.findActiveUsers(dataInicio, dataFim);
+    }
+
+
+    public List<HistoricoResponseDTO> obterAgendamentosUltimoMes() {
+        LocalDateTime hoje = LocalDateTime.now();
+
+        LocalDate primeiroDiaMesAnterior = hoje.minusMonths(1).withDayOfMonth(1).toLocalDate();
+        LocalDate ultimoDiaMesAnterior = primeiroDiaMesAnterior.with(TemporalAdjusters.lastDayOfMonth());
+        LocalDateTime inicioMesAnterior = primeiroDiaMesAnterior.atStartOfDay();
+        LocalDateTime fimMesAnterior = ultimoDiaMesAnterior.atTime(LocalTime.MAX);
+
+        List<HistoricoAgendamento> agendamentos = repository.findByDataBetween(inicioMesAnterior, fimMesAnterior);
+
+        return agendamentos.stream()
+                .map(mapper::toHistoricoResponseDto)
+                .collect(Collectors.toList());
     }
 
     public byte[] getHistoricoCsv(LocalDateTime dataInicio, LocalDateTime dataFim) throws IOException {
