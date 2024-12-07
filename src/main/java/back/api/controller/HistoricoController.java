@@ -2,6 +2,7 @@ package back.api.controller;
 
 
 import back.domain.dto.request.HistoricoRequestDTO;
+import back.domain.dto.response.AgendamentosPorMesDTO;
 import back.domain.dto.response.HistoricoResponseDTO;
 import back.domain.mapper.HistoricoMapper;
 import back.domain.model.HistoricoAgendamento;
@@ -164,6 +165,29 @@ public class HistoricoController {
         ));
     }
 
+
+    @Operation(summary = "Média de agendamentos cancelados", description = "Retorna a média de agendamentos cancelados por dia desde o início do mês")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Média calculada com sucesso"),
+            @ApiResponse(responseCode = "500", description = "Erro ao calcular a média")
+    })
+    @GetMapping("/media-cancelados")
+    public ResponseEntity<Double> calcularMediaCanceladosMes() {
+        Double media = service.calcularMediaCanceladosMes();
+        return ResponseEntity.ok(media);
+    }
+
+
+    @Operation(summary = "Obter total de agendamentos por mês", description = "Retorna o total de agendamentos agrupados por mês")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Dados obtidos com sucesso"),
+            @ApiResponse(responseCode = "500", description = "Erro ao processar os dados")
+    })
+    @GetMapping("/total-por-mes")
+    public ResponseEntity<List<AgendamentosPorMesDTO>> obterTotalAgendamentosPorMes() {
+        List<AgendamentosPorMesDTO> agendamentosPorMes = service.obterTotalAgendamentosPorMes();
+        return ResponseEntity.ok(agendamentosPorMes);
+    }
 
 
     @GetMapping("/csv")

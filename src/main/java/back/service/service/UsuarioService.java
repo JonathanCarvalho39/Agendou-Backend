@@ -20,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -62,10 +63,9 @@ public class UsuarioService {
     }
 
 
-    public ResponseEntity<?> cadastrarUsuario(UsuarioRequestDTO dto){
-
-        if(repository.existsByEmail(dto.getEmail())){
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Email ja cadastrado");
+    public ResponseEntity<?> cadastrarUsuario(UsuarioRequestDTO dto) {
+        if (repository.existsByEmail(dto.getEmail())) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Email já cadastrado");
         }
 
         String encryptedPassword = passwordEncoder.encode(dto.getSenha());
@@ -76,6 +76,8 @@ public class UsuarioService {
         usuario.setEmail(dto.getEmail());
         usuario.setTelefone(dto.getTelefone());
         usuario.setRole(dto.getRole());
+        usuario.setDataCadastro(LocalDateTime.now());
+
         Usuario usuarioSalvo = repository.save(usuario);
 
         UsuarioResponseDTO responseDTO = mapper.toUsuarioResponseDto(usuarioSalvo);
@@ -86,13 +88,9 @@ public class UsuarioService {
         }
 
         logger.info("Usuário cadastrado com sucesso: " + responseDTO.getEmail());
-
-        System.out.println("usuario: " + responseDTO);
-
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(responseDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
     }
+
 
 
     public List<UsuarioResponseDTO> listarUsuarios() {
@@ -151,6 +149,11 @@ public class UsuarioService {
         repository.delete(usuario);
 
         return ResponseEntity.status(200).body(usuario);
+    }
+
+    public long contarNovosUsuariosDoMes() {
+        LocalDateTime inicioMes = LocalDateTime.now().withDayOfMonth(1).toLocalDate().atStartOfDay();
+        return repository.countNewUsersThisMonth(inicioMes);
     }
 
 }

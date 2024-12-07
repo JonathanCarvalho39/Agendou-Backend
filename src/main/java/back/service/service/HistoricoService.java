@@ -2,6 +2,7 @@ package back.service.service;
 
 import back.domain.dto.request.HistoricoRequestDTO;
 import back.domain.dto.response.AgendamentoSimplificadoResponseDTO;
+import back.domain.dto.response.AgendamentosPorMesDTO;
 import back.domain.dto.response.HistoricoResponseDTO;
 import back.domain.mapper.AgendamentoMapper;
 import back.domain.mapper.HistoricoMapper;
@@ -18,6 +19,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -143,6 +145,27 @@ public class HistoricoService {
                 .map(mapper::toHistoricoResponseDto)
                 .collect(Collectors.toList());
     }
+
+
+    public Double calcularMediaCanceladosMes() {
+        LocalDateTime inicioMes = LocalDateTime.now().withDayOfMonth(1).withHour(0).withMinute(0).withSecond(0);
+        LocalDateTime agora = LocalDateTime.now();
+
+        Long totalCancelados = repository.countCanceladosNoPeriodo(inicioMes, agora);
+        long diasNoMesAteAgora = ChronoUnit.DAYS.between(inicioMes, agora) + 1;
+
+        return totalCancelados.doubleValue() / diasNoMesAteAgora;
+    }
+
+
+    public List<AgendamentosPorMesDTO> obterTotalAgendamentosPorMes() {
+        List<Object[]> resultados = repository.totalAgendamentosPorMes();
+        return resultados.stream()
+                .map(obj -> new AgendamentosPorMesDTO((String) obj[0], (Long) obj[1]))
+                .collect(Collectors.toList());
+    }
+
+
 
     public byte[] getHistoricoCsv(LocalDateTime dataInicio, LocalDateTime dataFim) throws IOException {
 
