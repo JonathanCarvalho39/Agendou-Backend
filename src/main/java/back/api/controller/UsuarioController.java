@@ -47,12 +47,12 @@ public class UsuarioController {
         return ResponseEntity.status(200).body(service.listarUsuarios());
     }
 
-    @Operation(summary = "Listar agendamento pelo id", description = "Lista as informações do agendamento pelo id.")
+    @Operation(summary = "Listar infos do usuario pelo id", description = "Lista as informações do usuário pelo id.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Agendamento encontrado.",
+            @ApiResponse(responseCode = "200", description = "Usuario encontrado.",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = Agendamento.class))),
-            @ApiResponse(responseCode = "404", description = "Agendamento não encontrado.")
+            @ApiResponse(responseCode = "404", description = "Usuario não encontrado.")
     })
     @GetMapping("/listar/{id}")
     public ResponseEntity<?> getUsuarioById(@PathVariable Integer id) {

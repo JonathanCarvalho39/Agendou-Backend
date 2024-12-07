@@ -3,8 +3,10 @@ package back.service.service;
 
 import back.domain.dto.request.ServicoRequestDTO;
 import back.domain.dto.response.ServicoResponseDTO;
+import back.domain.dto.response.UsuarioResponseDTO;
 import back.domain.mapper.ServicoMapper;
 import back.domain.model.Servico;
+import back.domain.model.Usuario;
 import back.domain.repository.ServicoRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -35,6 +37,20 @@ public class ServicoService {
         return servicos.stream()
                 .map(mapper::toServicoResponseDto)
                 .collect(Collectors.toList());
+    }
+
+    public ResponseEntity<?> buscarServicoPorID(Integer id) {
+        Optional<Servico> servicoExistente = repository.findById(id);
+
+        if (servicoExistente.isEmpty()) {
+            logger.error("Serviço com id " + id + " não encontrado");
+            return ResponseEntity.status(404).body("Serviço não encontrado");
+        }
+
+        Servico servico = servicoExistente.get();
+        ServicoResponseDTO responseDTO = mapper.toServicoResponseDto(servico);
+
+        return ResponseEntity.status(200).body(responseDTO);
     }
 
     public ResponseEntity<?> atualizarServico(Integer id, ServicoRequestDTO servicoRequest) {

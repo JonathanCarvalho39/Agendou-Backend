@@ -4,8 +4,10 @@ import back.api.config.security.TokenService;
 import back.domain.dto.request.EmpresaRequestDTO;
 import back.domain.dto.response.EmpresaResponseDTO;
 import back.domain.dto.response.LoginResponseDTO;
+import back.domain.dto.response.UsuarioResponseDTO;
 import back.domain.mapper.EmpresaMapper;
 import back.domain.model.Empresa;
+import back.domain.model.Usuario;
 import back.domain.repository.EmpresaRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -117,6 +119,20 @@ public class EmpresaService {
         repository.save(empresa);
 
         return ResponseEntity.status(200).body(mapper.toEmpresaResponseDto(empresa));
+    }
+
+    public ResponseEntity<?> buscarEmpresaPorID(Integer id) {
+        Optional<Empresa> empresaExistente = repository.findById(id);
+
+        if (empresaExistente.isEmpty()) {
+            logger.error("Empresa com id " + id + " não encontrado");
+            return ResponseEntity.status(404).body("Empresa não encontrado");
+        }
+
+        Empresa empresa = empresaExistente.get();
+        EmpresaResponseDTO responseDTO = mapper.toEmpresaResponseDto(empresa);
+
+        return ResponseEntity.status(200).body(responseDTO);
     }
 
 
