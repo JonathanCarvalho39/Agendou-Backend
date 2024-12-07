@@ -113,4 +113,8 @@ public class HistoricoService {
                 .collect(Collectors.toList());
     }
 
+    public List<String> buscarUsuariosAtivos(LocalDateTime dataInicio, LocalDateTime dataFim) {
+        return repository.findActiveUsers(dataInicio, dataFim);
+    }
+
 }

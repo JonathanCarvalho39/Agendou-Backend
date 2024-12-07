@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -109,6 +110,27 @@ public class HistoricoController {
     public ResponseEntity<List<HistoricoResponseDTO>> listarAgendamentosPassados(@RequestBody LocalDateTime dataInicio) {
         List<HistoricoResponseDTO> agendamentosPassados = service.listarAgendamentosPassados(dataInicio);
         return ResponseEntity.ok(agendamentosPassados);
+    }
+
+
+    @Operation(summary = "Obter usuários ativos", description = "Obtém a lista de usuários que possuem 4 ou mais agendamentos em um intervalo de tempo")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Usuários ativos obtidos com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Erro ao obter usuários ativos"),
+            @ApiResponse(responseCode = "404", description = "Nenhum usuário encontrado no período")
+    })
+    @GetMapping("/usuarios-ativos")
+    public ResponseEntity<List<String>> obterUsuariosAtivos(
+            @RequestParam("dataInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicio,
+            @RequestParam("dataFim") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFim) {
+
+        List<String> usuariosAtivos = service.buscarUsuariosAtivos(dataInicio, dataFim);
+
+        if (usuariosAtivos.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(usuariosAtivos); // Retorna 404 se nenhum usuário for encontrado
+        }
+
+        return ResponseEntity.ok(usuariosAtivos); // Retorna 200 com os usuários ativos
     }
 
 }
