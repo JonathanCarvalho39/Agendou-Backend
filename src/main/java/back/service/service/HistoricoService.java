@@ -11,6 +11,10 @@ import back.domain.repository.AgendamentoRepository;
 import back.domain.repository.HistoricoRepository;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -115,6 +119,41 @@ public class HistoricoService {
 
     public List<String> buscarUsuariosAtivos(LocalDateTime dataInicio, LocalDateTime dataFim) {
         return repository.findActiveUsers(dataInicio, dataFim);
+    }
+
+    public byte[] getHistoricoCsv(LocalDateTime dataInicio, LocalDateTime dataFim) throws IOException {
+
+        List<HistoricoAgendamento> historicoAgendamentos = repository.findByDataBetween(dataInicio, dataFim);
+        List<HistoricoResponseDTO> historicoResponseDTOS = historicoAgendamentos.stream()
+                .map(servico -> {
+                    try {
+                        System.out.println("Data início: " + dataInicio + ", Data fim: " + dataFim);
+                        System.out.println("Quantidade de registros encontrados: " + historicoAgendamentos.size());
+
+                        return mapper.toHistoricoResponseDto(servico);
+                    } catch (Exception e) {
+                        throw new RuntimeException("Erro ao mapear HistoricoAgendamento para HistoricoRespondeDTO", e);
+                    }
+                })
+                .toList();
+
+        try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+             OutputStreamWriter writer = new OutputStreamWriter(outputStream)) {
+
+            writer.write("Data;StatusAnterior;StatusAtual;Agendamento\n");
+
+            for (HistoricoResponseDTO dto : historicoResponseDTOS) {
+                writer.write(String.format("%s;%s;%s;%s\n",
+                        dto.getData(),
+                        dto.getStatusAnterior(),
+                        dto.getStatusAtual(),
+                        dto.getAgendamento() != null ? dto.getAgendamento().toString() : ""));
+            }
+
+            writer.flush();
+            System.out.println(new String(outputStream.toByteArray(), StandardCharsets.UTF_8));
+            return outputStream.toByteArray();
+        }
     }
 
 }
