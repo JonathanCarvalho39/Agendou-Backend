@@ -89,10 +89,6 @@ public class ServicoService {
 
     public ResponseEntity<?> cadastrarServico(ServicoRequestDTO dto) {
 
-        if(repository.existsById(dto.getId())){
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Serviço ja cadastrado");
-        }
-
         Servico servico = mapper.toEntity(dto);
         servico.setId(dto.getId());
         servico.setNome(dto.getNome());

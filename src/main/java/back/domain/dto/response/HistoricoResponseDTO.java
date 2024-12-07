@@ -15,5 +15,8 @@ public class HistoricoResponseDTO {
     private LocalDateTime data;
     private String statusAnterior;
     private String statusAtual;
-    private AgendamentoResponseDTO agendamento;
+    private AgendamentoSimplificadoResponseDTO agendamento;
+
+    public HistoricoResponseDTO(Integer id, String statusAnterior, String statusAtual, AgendamentoSimplificadoResponseDTO agendamentoSimplificadoResponseDTO) {
+    }
 }

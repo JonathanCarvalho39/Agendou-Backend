@@ -31,3 +31,270 @@ Error starting ApplicationContext. To display the condition evaluation report re
 2024-12-06 16:47:00 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
 2024-12-06 16:47:39 INFO  [http-nio-8080-exec-3] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
 2024-12-06 16:52:27 INFO  [http-nio-8080-exec-2] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-06 23:41:57 INFO  [http-nio-8080-exec-6] back.service.service.EmpresaService - Empresa cadastrada com sucesso: assimsouloukapixel@hotmail.com
+2024-12-06 23:45:02 INFO  [http-nio-8080-exec-6] back.service.service.EmpresaService - Empresa deletada com sucesso: assimsouloukapixel@hotmail.com
+2024-12-06 23:48:57 INFO  [http-nio-8080-exec-10] back.service.service.EmpresaService - Empresa cadastrada com sucesso: assimsouloukapixel@hotmail.com
+2024-12-06 23:50:45 INFO  [http-nio-8080-exec-7] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-07 00:10:25 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-07 00:10:25 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-07 00:10:25 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-07 00:24:11 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-07 00:24:12 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-07 00:24:12 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 4.157 seconds (process running for 4.707)
+2024-12-07 00:24:33 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-07 00:24:33 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-07 00:24:33 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2024-12-07 00:24:34 INFO  [http-nio-8080-exec-2] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-07 00:50:13 INFO  [http-nio-8080-exec-2] back.service.service.ServicoService - Serviço deletado com sucesso: Descoloração
+2024-12-07 00:50:26 INFO  [http-nio-8080-exec-1] back.service.service.ServicoService - Serviço deletado com sucesso: Escova
+2024-12-07 00:59:18 INFO  [http-nio-8080-exec-5] back.service.service.ServicoService - Serviço deletado com sucesso: Corte Masculino
+2024-12-07 01:07:12 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-07 01:07:12 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-07 01:07:12 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-07 01:09:16 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-07 01:09:17 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-07 01:09:17 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 4.133 seconds (process running for 4.625)
+2024-12-07 01:09:20 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-07 01:09:20 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-07 01:09:20 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-12-07 01:09:47 INFO  [http-nio-8080-exec-4] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-07 01:10:07 INFO  [http-nio-8080-exec-1] back.service.service.ServicoService - Serviço cadastrado com sucesso: Teste
+2024-12-07 01:10:34 INFO  [http-nio-8080-exec-8] back.service.service.ServicoService - Serviço cadastrado com sucesso: Manicure
+2024-12-07 01:10:43 INFO  [http-nio-8080-exec-6] back.service.service.ServicoService - Serviço deletado com sucesso: Teste
+2024-12-07 01:20:04 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-07 01:20:04 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-07 01:20:04 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-07 02:41:50 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-07 02:41:51 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-07 02:41:51 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 4.166 seconds (process running for 4.65)
+2024-12-07 02:42:11 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-07 02:42:11 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-07 02:42:11 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2024-12-07 02:42:12 INFO  [http-nio-8080-exec-2] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-07 02:53:31 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-07 02:53:32 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-07 02:53:32 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 4.753 seconds (process running for 5.459)
+2024-12-07 02:55:07 INFO  [http-nio-8080-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-07 02:55:07 INFO  [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-07 02:55:07 INFO  [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2024-12-07 02:58:42 INFO  [http-nio-8080-exec-8] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-07 03:00:21 INFO  [http-nio-8080-exec-2] back.service.service.ServicoService - Serviço cadastrado com sucesso: Teste
+2024-12-07 03:00:47 INFO  [http-nio-8080-exec-6] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-07 03:01:15 INFO  [http-nio-8080-exec-10] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=1, data=2024-12-30T17:10, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=null, email=null, senha=null, telefone=null, role=null), fkServico=Servico(id=1, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-07 03:05:05 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-07 03:05:05 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-07 03:05:05 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-07 03:05:13 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-07 03:05:13 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-07 03:05:13 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 4.088 seconds (process running for 4.537)
+2024-12-07 03:05:17 INFO  [http-nio-8080-exec-7] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-07 03:05:17 INFO  [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-07 03:05:17 INFO  [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-12-07 03:05:45 INFO  [http-nio-8080-exec-7] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-07 03:05:59 INFO  [http-nio-8080-exec-2] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-07 03:06:25 INFO  [http-nio-8080-exec-3] back.service.service.ServicoService - Serviço cadastrado com sucesso: Manicure
+2024-12-07 03:11:50 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-07 03:11:50 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-07 03:11:50 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-07 03:11:57 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-07 03:11:58 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-07 03:11:58 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 3.764 seconds (process running for 4.183)
+2024-12-07 03:12:07 INFO  [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-07 03:12:07 INFO  [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-07 03:12:07 INFO  [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-12-07 03:12:33 INFO  [http-nio-8080-exec-5] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-07 03:12:48 INFO  [http-nio-8080-exec-6] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-07 03:13:48 INFO  [http-nio-8080-exec-4] back.service.service.ServicoService - Serviço cadastrado com sucesso: Manicure
+2024-12-07 03:14:24 INFO  [http-nio-8080-exec-2] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=1, data=2024-12-30T13:00:13, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=null, email=null, senha=null, telefone=null, role=null), fkServico=Servico(id=1, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-07 03:18:08 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-07 03:18:08 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-07 03:18:08 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-07 03:18:16 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-07 03:18:16 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-07 03:18:16 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 3.888 seconds (process running for 4.261)
+2024-12-07 03:18:26 INFO  [http-nio-8080-exec-5] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-07 03:18:26 INFO  [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-07 03:18:26 INFO  [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2024-12-07 03:19:04 INFO  [http-nio-8080-exec-6] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-07 03:19:34 INFO  [http-nio-8080-exec-7] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-07 03:20:07 INFO  [http-nio-8080-exec-7] back.service.service.ServicoService - Serviço cadastrado com sucesso: Manicure
+2024-12-07 03:20:26 INFO  [http-nio-8080-exec-7] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=1, data=2024-12-25T18:35:17, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=null, email=null, senha=null, telefone=null, role=null), fkServico=Servico(id=1, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-07 03:25:29 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-07 03:25:29 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-07 03:25:29 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-07 03:25:52 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-07 03:25:53 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-07 03:25:53 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 3.947 seconds (process running for 4.357)
+2024-12-07 03:26:14 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-07 03:26:14 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-07 03:26:14 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-12-07 03:26:15 INFO  [http-nio-8080-exec-1] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-07 03:26:31 INFO  [http-nio-8080-exec-3] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-07 03:27:10 INFO  [http-nio-8080-exec-3] back.service.service.ServicoService - Serviço cadastrado com sucesso: Manicure
+2024-12-07 03:27:27 INFO  [http-nio-8080-exec-6] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=1, data=2024-12-16T19:20:17, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=null, email=null, senha=null, telefone=null, role=null), fkServico=Servico(id=1, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-07 03:31:58 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-07 03:31:58 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-07 03:31:58 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-07 03:32:07 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-07 03:32:07 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-07 03:32:07 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 3.864 seconds (process running for 4.26)
+2024-12-07 03:32:13 INFO  [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-07 03:32:13 INFO  [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-07 03:32:13 INFO  [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-12-07 03:32:38 INFO  [http-nio-8080-exec-6] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-07 03:32:56 INFO  [http-nio-8080-exec-7] back.service.service.ServicoService - Serviço cadastrado com sucesso: Manicure
+2024-12-07 03:33:18 INFO  [http-nio-8080-exec-2] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-07 03:33:44 INFO  [http-nio-8080-exec-8] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=1, data=2024-12-31T19:20:34, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=null, email=null, senha=null, telefone=null, role=null), fkServico=Servico(id=1, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-07 03:33:49 INFO  [http-nio-8080-exec-1] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-12-31T19:20:34
+2024-12-07 04:01:37 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-07 04:01:37 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-07 04:01:37 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-07 04:01:46 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-07 04:01:46 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-07 04:01:46 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 4.018 seconds (process running for 4.451)
+2024-12-07 04:02:03 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-07 04:02:03 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-07 04:02:03 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-12-07 04:02:04 INFO  [http-nio-8080-exec-1] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-07 04:02:18 INFO  [http-nio-8080-exec-2] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-07 04:02:48 INFO  [http-nio-8080-exec-3] back.service.service.ServicoService - Serviço cadastrado com sucesso: Manicure
+2024-12-07 04:03:05 INFO  [http-nio-8080-exec-7] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=1, data=2024-12-17T08:50:55, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=null, email=null, senha=null, telefone=null, role=null), fkServico=Servico(id=1, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-07 04:03:08 INFO  [http-nio-8080-exec-3] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-12-17T08:50:55
+2024-12-07 04:09:22 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-07 04:09:22 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-07 04:09:22 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-07 10:15:33 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-07 10:15:33 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-07 10:15:33 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 5.201 seconds (process running for 6.481)
+2024-12-07 10:15:33 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-07 10:15:34 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-07 10:15:34 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-07 10:15:37 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-07 10:15:38 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-07 10:15:38 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 4.265 seconds (process running for 4.751)
+2024-12-07 10:15:48 INFO  [http-nio-8080-exec-6] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-07 10:15:48 INFO  [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-07 10:15:48 INFO  [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2024-12-07 10:16:14 INFO  [http-nio-8080-exec-1] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-07 10:16:28 INFO  [http-nio-8080-exec-9] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-07 10:16:59 INFO  [http-nio-8080-exec-7] back.service.service.ServicoService - Serviço cadastrado com sucesso: Manicure
+2024-12-07 10:17:34 INFO  [http-nio-8080-exec-1] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=1, data=2024-12-16T22:00:21, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=null, email=null, senha=null, telefone=null, role=null), fkServico=Servico(id=1, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-07 10:17:57 INFO  [http-nio-8080-exec-2] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-12-16T22:00:21
+2024-12-07 10:21:12 INFO  [http-nio-8080-exec-10] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-12-16T22:00:21
+2024-12-07 10:21:16 INFO  [http-nio-8080-exec-2] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-12-16T22:00:21
+2024-12-07 10:21:26 INFO  [http-nio-8080-exec-9] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-12-16T22:00:21
+2024-12-07 10:24:22 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-07 10:24:22 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-07 10:24:22 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-07 10:30:50 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-07 10:30:50 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-07 10:30:50 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-07 10:30:50 INFO  [main] o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2024-12-07 10:30:50 INFO  [main] o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-12-07 10:33:05 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-07 10:33:05 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-07 10:33:05 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-07 10:33:05 INFO  [main] o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2024-12-07 10:33:05 INFO  [main] o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-12-07 10:33:34 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-07 10:33:34 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-07 10:33:34 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-07 10:33:34 INFO  [main] o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2024-12-07 10:33:34 INFO  [main] o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-12-07 10:34:01 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-07 10:34:01 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-07 10:34:01 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 3.842 seconds (process running for 4.269)
+2024-12-07 10:34:11 INFO  [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-07 10:34:11 INFO  [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-07 10:34:11 INFO  [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2024-12-07 10:34:27 INFO  [http-nio-8080-exec-5] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-07 10:35:09 INFO  [http-nio-8080-exec-8] back.service.service.ServicoService - Serviço cadastrado com sucesso: Manicure
+2024-12-07 10:35:18 INFO  [http-nio-8080-exec-1] back.service.service.ServicoService - Serviço cadastrado com sucesso: Corte
+2024-12-07 10:35:40 INFO  [http-nio-8080-exec-1] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-07 10:36:15 INFO  [http-nio-8080-exec-9] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=1, data=2024-12-30T22:00:05, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=null, email=null, senha=null, telefone=null, role=null), fkServico=Servico(id=2, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-07 10:36:21 INFO  [http-nio-8080-exec-7] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-12-30T22:00:05
+2024-12-07 10:43:29 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-07 10:43:29 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-07 10:43:29 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-07 10:47:23 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-07 10:47:23 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-07 10:47:23 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 3.83 seconds (process running for 4.317)
+2024-12-07 10:47:33 INFO  [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-07 10:47:33 INFO  [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-07 10:47:33 INFO  [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-12-07 10:48:03 INFO  [http-nio-8080-exec-3] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-07 10:48:18 INFO  [http-nio-8080-exec-2] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-07 10:48:40 INFO  [http-nio-8080-exec-1] back.service.service.ServicoService - Serviço cadastrado com sucesso: Manicure
+2024-12-07 10:48:45 INFO  [http-nio-8080-exec-7] back.service.service.ServicoService - Serviço cadastrado com sucesso: Corte
+2024-12-07 10:49:15 INFO  [http-nio-8080-exec-10] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=1, data=2024-12-24T22:00:01, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=null, email=null, senha=null, telefone=null, role=null), fkServico=Servico(id=2, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-07 10:50:01 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-07 10:50:01 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-07 10:50:01 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-07 10:50:20 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-07 10:50:21 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-07 10:50:21 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 3.815 seconds (process running for 4.207)
+2024-12-07 10:50:25 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-07 10:50:25 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-07 10:50:25 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-12-07 10:50:47 INFO  [http-nio-8080-exec-5] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-07 10:51:22 INFO  [http-nio-8080-exec-10] back.service.service.ServicoService - Serviço cadastrado com sucesso: Manicure
+2024-12-07 10:51:29 INFO  [http-nio-8080-exec-6] back.service.service.ServicoService - Serviço cadastrado com sucesso: Corte
+2024-12-07 10:51:47 INFO  [http-nio-8080-exec-10] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-07 10:52:12 INFO  [http-nio-8080-exec-2] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=1, data=2024-12-20T11:00:01, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=null, email=null, senha=null, telefone=null, role=null), fkServico=Servico(id=2, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-07 11:01:18 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-07 11:01:18 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-07 11:01:18 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-07 11:01:24 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-07 11:01:25 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-07 11:01:25 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 3.817 seconds (process running for 4.215)
+2024-12-07 11:01:38 INFO  [http-nio-8080-exec-5] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-07 11:01:38 INFO  [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-07 11:01:38 INFO  [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2024-12-07 11:01:56 INFO  [http-nio-8080-exec-10] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-07 11:02:10 INFO  [http-nio-8080-exec-1] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-07 11:02:38 INFO  [http-nio-8080-exec-1] back.service.service.ServicoService - Serviço cadastrado com sucesso: Corte
+2024-12-07 11:02:51 INFO  [http-nio-8080-exec-8] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=1, data=2024-12-25T23:00:41, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=Christian, email=chris@sptech.school, senha=$2a$10$9k1xAAM0TDvWIHyzHd1q0uh0ERhY0mIpxs8yWFxNEE0npczOBJXy2, telefone=1111111111, role=null), fkServico=Servico(id=1, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-07 11:03:31 INFO  [http-nio-8080-exec-7] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-12-25T23:00:41
+2024-12-07 11:07:26 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-07 11:07:26 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-07 11:07:26 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-07 11:07:33 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-07 11:07:34 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-07 11:07:34 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 3.856 seconds (process running for 4.256)
+2024-12-07 11:09:28 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-07 11:09:28 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-07 11:09:28 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-12-07 11:09:28 INFO  [http-nio-8080-exec-1] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-07 11:09:47 INFO  [http-nio-8080-exec-3] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-07 11:11:14 INFO  [http-nio-8080-exec-4] back.service.service.ServicoService - Serviço cadastrado com sucesso: Corte
+2024-12-07 11:11:27 INFO  [http-nio-8080-exec-4] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=1, data=2024-12-30T23:20:17, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=Christian, email=chris@sptech.school, senha=$2a$10$8xwSKbfMadEIpWz4mhQXiOvXknwi1U.W0XaPFn3qVHVdvLMFS1/tC, telefone=1111111111, role=null), fkServico=Servico(id=1, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-07 11:11:46 INFO  [http-nio-8080-exec-7] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-12-30T23:20:17
+2024-12-07 11:12:06 INFO  [http-nio-8080-exec-8] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=2, data=2024-12-16T11:11:57, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=Christian, email=chris@sptech.school, senha=$2a$10$8xwSKbfMadEIpWz4mhQXiOvXknwi1U.W0XaPFn3qVHVdvLMFS1/tC, telefone=1111111111, role=null), fkServico=Servico(id=1, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-07 11:12:22 INFO  [http-nio-8080-exec-9] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-12-16T11:11:57
+2024-12-07 11:20:39 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-07 11:20:39 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-07 11:20:39 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-07 11:20:45 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-07 11:20:45 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-07 11:20:45 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 3.774 seconds (process running for 4.191)
+2024-12-07 11:20:59 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-07 11:20:59 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-07 11:20:59 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2024-12-07 11:21:13 INFO  [http-nio-8080-exec-4] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-07 11:21:25 INFO  [http-nio-8080-exec-5] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-07 11:21:58 INFO  [http-nio-8080-exec-6] back.service.service.ServicoService - Serviço cadastrado com sucesso: Manicure
+2024-12-07 11:22:03 INFO  [http-nio-8080-exec-4] back.service.service.ServicoService - Serviço cadastrado com sucesso: Corte
+2024-12-07 11:22:15 INFO  [http-nio-8080-exec-3] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=1, data=2024-12-24T23:00:06, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=Christian, email=chris@sptech.school, senha=$2a$10$1B0FL4OwS/03PpmV0ipkeOZ4rDKrZhA2DwBQmMZ6TBMtzb9yUJ8p2, telefone=1111111111, role=null), fkServico=Servico(id=2, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-07 11:22:25 INFO  [http-nio-8080-exec-2] b.service.service.AgendamentoService - Agendamento atualizado com sucesso: AgendamentoResponseDTO(id=1, data=2024-12-24T23:00:06, fkFuncionario=Funcionario(id=1, nome=João Silva, email=joao.silva@example.com, senha=senha123, telefone=11987654321), fkUsuario=Usuario(id=1, nome=Christian, email=chris@sptech.school, senha=$2a$10$1B0FL4OwS/03PpmV0ipkeOZ4rDKrZhA2DwBQmMZ6TBMtzb9yUJ8p2, telefone=1111111111, role=null), fkServico=Servico(id=1, nome=Manicure, preco=44.0, descricao=teste), fkAvaliacao=null)
+2024-12-07 11:22:40 INFO  [http-nio-8080-exec-8] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-12-24T23:00:06
+2024-12-07 11:23:59 INFO  [http-nio-8080-exec-9] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=2, data=2024-12-10T11:00:49, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=Christian, email=chris@sptech.school, senha=$2a$10$1B0FL4OwS/03PpmV0ipkeOZ4rDKrZhA2DwBQmMZ6TBMtzb9yUJ8p2, telefone=1111111111, role=null), fkServico=Servico(id=2, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-07 11:24:26 INFO  [http-nio-8080-exec-7] b.service.service.AgendamentoService - Agendamento atualizado com sucesso: AgendamentoResponseDTO(id=2, data=2024-12-25T13:10:49, fkFuncionario=Funcionario(id=1, nome=João Silva, email=joao.silva@example.com, senha=senha123, telefone=11987654321), fkUsuario=Usuario(id=1, nome=Christian, email=chris@sptech.school, senha=$2a$10$1B0FL4OwS/03PpmV0ipkeOZ4rDKrZhA2DwBQmMZ6TBMtzb9yUJ8p2, telefone=1111111111, role=null), fkServico=Servico(id=2, nome=Corte, preco=66.0, descricao=teste), fkAvaliacao=null)
+2024-12-07 11:25:20 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-07 11:25:20 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-07 11:25:20 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

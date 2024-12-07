@@ -28,7 +28,12 @@ public class HistoricoAgendamento {
     @Column(name = "status_atual")
     private String statusAtual;
 
-    @ManyToOne
-    @JoinColumn(name = "fk_agendamento")
-    private Agendamento fkAgendamento;
+    @Column(name = "nome_usuario")
+    private String nomeUsuario;
+
+    @Column(name = "nome_funcionario")
+    private String nomeFuncionario;
+
+    @Column(name = "nome_servico")
+    private String nomeServico;
 }

@@ -1,6 +1,8 @@
 package back.domain.mapper;
 
+import back.domain.dto.response.AgendamentoSimplificadoResponseDTO;
 import back.domain.dto.response.HistoricoResponseDTO;
+import back.domain.model.Agendamento;
 import back.domain.model.HistoricoAgendamento;
 import org.springframework.stereotype.Component;
 
@@ -23,8 +25,16 @@ public class HistoricoMapper {
         dto.setData(entity.getData());
         dto.setStatusAnterior(entity.getStatusAnterior());
         dto.setStatusAtual(entity.getStatusAtual());
-        dto.setAgendamento(mapper.toAgendamentoResponseDto(entity.getFkAgendamento()));
+
+        AgendamentoSimplificadoResponseDTO agendamentoSimplificado = new AgendamentoSimplificadoResponseDTO(
+                entity.getNomeUsuario(),
+                entity.getData().toLocalDate().toString(),
+                entity.getData().toLocalTime().toString()
+        );
+
+        dto.setAgendamento(agendamentoSimplificado);
 
         return dto;
     }
+
 }
