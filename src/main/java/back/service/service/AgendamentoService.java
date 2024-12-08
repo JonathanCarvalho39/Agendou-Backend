@@ -81,7 +81,7 @@ public class AgendamentoService {
     public List<AgendamentoResponseDTO> listarAgendamentosPorFuncionario(Integer funcionarioId) {
         List<Agendamento> agendamentos = repository.findAllByFkFuncionarioId(funcionarioId);
 
-        // Convert to DTO
+       
         return agendamentos.stream()
                 .map(mapper::toAgendamentoResponseDto)
                 .collect(Collectors.toList());

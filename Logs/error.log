@@ -1,0 +1,18 @@
+2024-12-07 23:58:42 ERROR [main] o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 1 of constructor in back.service.service.AvaliacaoService required a bean of type 'back.domain.mapper.AvaliacaoMapper' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'back.domain.mapper.AvaliacaoMapper' in your configuration.
+
