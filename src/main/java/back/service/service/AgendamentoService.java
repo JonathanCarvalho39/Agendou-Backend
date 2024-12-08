@@ -3,11 +3,16 @@ package back.service.service;
 import back.api.controller.HistoricoController;
 import back.domain.dto.request.AgendamentoRequestDTO;
 import back.domain.dto.request.HistoricoRequestDTO;
+import back.domain.dto.response.AgendamentoPorMesDTO;
 import back.domain.dto.response.AgendamentoResponseDTO;
 import back.domain.dto.response.AgendamentoSimplificadoResponseDTO;
+import back.domain.dto.response.AgendamentosPorMesDTO;
 import back.domain.mapper.AgendamentoMapper;
 import back.domain.model.*;
 import back.domain.repository.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -15,9 +20,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.server.ResponseStatusException;
-import java.util.List;
-import java.util.Optional;
+
+import java.time.LocalDateTime;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,9 +36,9 @@ public class AgendamentoService {
     private final ServicoRepository servicoRepository;
     private final FuncionarioRepository funcionarioRepository;
     private final HistoricoService historicoService;
+    private final UsuarioRepository usuarioRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(AgendamentoService.class);
-    private final UsuarioRepository usuarioRepository;
     private final HistoricoRepository historicoRepository;
 
     public ResponseEntity<?> agendar(AgendamentoRequestDTO agendamentoRequest) {
@@ -87,12 +94,47 @@ public class AgendamentoService {
                 .collect(Collectors.toList());
     }
 
+    public Map<String, Long> getAgendamentosPorMes() {
+        List<Object[]> resultados = repository.findAgendamentosPorMes();
+
+        Map<String, Long> agendamentosPorMes = new HashMap<>();
+        String[] meses = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
+
+        for (Object[] resultado : resultados) {
+            int mesIndex = ((Integer) resultado[0]) - 1;
+            Long total = (Long) resultado[1];
+            agendamentosPorMes.put(meses[mesIndex], total);
+        }
+
+        return agendamentosPorMes;
+    }
+
     public List<AgendamentoResponseDTO> listarAgendamentos() {
         List<Agendamento> agendamentos = repository.findAll();
         return agendamentos.stream()
                 .map(mapper::toAgendamentoResponseDto)
                 .collect(Collectors.toList());
     }
+
+    public List<AgendamentoResponseDTO> listarAgendamentosPorMesAtualOuUltimo() {
+        LocalDateTime now = LocalDateTime.now();
+
+        LocalDateTime inicioMesAtual = now.withDayOfMonth(1).withHour(0).withMinute(0).withSecond(0).withNano(0);
+        LocalDateTime fimMesAtual = now.withDayOfMonth(now.toLocalDate().lengthOfMonth()).withHour(23).withMinute(59).withSecond(59).withNano(999999999);
+
+        List<Agendamento> agendamentosDoMesAtual = repository.findByDataBetween(inicioMesAtual, fimMesAtual);
+
+        if (agendamentosDoMesAtual.isEmpty()) {
+            LocalDateTime inicioUltimoMes = inicioMesAtual.minusMonths(1);
+            LocalDateTime fimUltimoMes = inicioMesAtual.minusDays(1).withHour(23).withMinute(59).withSecond(59).withNano(999999999);
+
+            agendamentosDoMesAtual = repository.findByDataBetween(inicioUltimoMes, fimUltimoMes);
+        }
+        return agendamentosDoMesAtual.stream()
+                .map(mapper::toAgendamentoResponseDto)
+                .collect(Collectors.toList());
+    }
+
 
     public ResponseEntity<?> buscarAgendamentoPorId(Integer id) {
         Optional<Agendamento> agendamentoExistente = repository.findById(id);
@@ -107,6 +149,26 @@ public class AgendamentoService {
 
         return ResponseEntity.status(200).body(responseDTO);
     }
+
+    public List<Integer> buscarUsuariosAtivos() {
+        LocalDateTime dataInicio = LocalDateTime.now().minusMonths(1);
+        LocalDateTime dataFim = LocalDateTime.now();
+
+        List<Integer> usuariosAtivos = new ArrayList<>();
+
+        List<Usuario> listaDeUsuarios = usuarioRepository.findAll();
+
+        for (Usuario usuario : listaDeUsuarios) {
+            Long agendamentos = repository.countAgendamentosPorUsuarioNoPeriodo(usuario.getId(), dataInicio, dataFim);
+
+            if (agendamentos != null && agendamentos > 5) {
+                usuariosAtivos.add(usuario.getId());
+            }
+        }
+
+        return usuariosAtivos;
+    }
+
 
     @Transactional
     public ResponseEntity<?> atualizarAgendamento(Integer id, AgendamentoRequestDTO agendamentoRequest) {

@@ -28,7 +28,7 @@ public interface HistoricoRepository extends JpaRepository<HistoricoAgendamento,
             "HAVING COUNT(h) >= 4")
     List<String> findActiveUsers(LocalDateTime startDate, LocalDateTime endDate);
 
-    @Query("SELECT COUNT(h) FROM HistoricoAgendamento h WHERE h.statusAtual = 'CANCELADO' AND h.data BETWEEN :inicio AND :fim")
+    @Query("SELECT COUNT(h) FROM HistoricoAgendamento h WHERE h.statusAtual = 'CANCELADO' AND h.data >= :inicio AND h.data < :fim")
     Long countCanceladosNoPeriodo(@Param("inicio") LocalDateTime inicio, @Param("fim") LocalDateTime fim);
 
     @Query("SELECT FUNCTION('TO_CHAR', h.data, 'Month') AS mes, COUNT(h.id) AS total " +

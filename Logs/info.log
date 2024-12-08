@@ -1,0 +1,189 @@
+2024-12-07 21:12:00 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-07 21:12:00 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-07 21:12:00 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 4.766 seconds (process running for 5.417)
+2024-12-07 21:12:03 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-07 21:12:03 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-07 21:12:03 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-07 21:12:24 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-07 21:12:25 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-07 21:12:25 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 4.321 seconds (process running for 4.888)
+2024-12-07 21:12:47 INFO  [http-nio-8080-exec-6] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-07 21:12:47 INFO  [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-07 21:12:47 INFO  [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2024-12-07 21:14:20 INFO  [http-nio-8080-exec-9] back.service.service.UsuarioService - Usuário cadastrado com sucesso: sabrina.tulio@sptech.school
+2024-12-07 21:15:58 INFO  [http-nio-8080-exec-5] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-07 22:31:14 INFO  [http-nio-8080-exec-1] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-07 23:16:59 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-07 23:16:59 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-07 23:16:59 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-07 23:17:08 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-07 23:17:08 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-07 23:17:08 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 4.963 seconds (process running for 5.515)
+2024-12-07 23:17:12 INFO  [http-nio-8080-exec-5] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-07 23:17:12 INFO  [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-07 23:17:12 INFO  [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-12-07 23:20:10 INFO  [http-nio-8080-exec-7] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-07 23:43:03 INFO  [http-nio-8080-exec-1] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-08 00:15:13 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-08 00:15:13 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-08 00:15:13 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-08 00:15:21 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-08 00:15:21 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-08 00:15:21 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 4.949 seconds (process running for 5.572)
+2024-12-08 00:15:29 INFO  [http-nio-8080-exec-5] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-08 00:15:29 INFO  [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-08 00:15:29 INFO  [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-12-08 00:15:53 INFO  [http-nio-8080-exec-5] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-08 00:20:41 INFO  [http-nio-8080-exec-10] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-08 01:05:09 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-08 01:05:09 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-08 01:05:09 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-08 01:05:15 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-08 01:05:16 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-08 01:05:16 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 5.006 seconds (process running for 5.697)
+2024-12-08 01:05:20 INFO  [http-nio-8080-exec-5] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-08 01:05:20 INFO  [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-08 01:05:20 INFO  [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-12-08 01:05:33 INFO  [http-nio-8080-exec-6] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-08 01:05:50 INFO  [http-nio-8080-exec-5] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-08 01:57:53 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-08 01:57:53 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-08 01:57:53 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-08 02:03:29 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-08 02:03:30 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-08 02:03:30 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 4.499 seconds (process running for 5.021)
+2024-12-08 02:03:46 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-08 02:03:46 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-08 02:03:46 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2024-12-08 02:03:47 INFO  [http-nio-8080-exec-2] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-08 02:04:01 INFO  [http-nio-8080-exec-4] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-08 02:16:54 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-08 02:16:54 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-08 02:16:54 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-08 02:17:04 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-08 02:17:04 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-08 02:17:04 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 4.678 seconds (process running for 5.143)
+2024-12-08 02:18:07 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-08 02:18:07 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-08 02:18:07 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2024-12-08 02:18:07 INFO  [http-nio-8080-exec-1] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-08 02:21:36 INFO  [http-nio-8080-exec-10] back.service.service.UsuarioService - Usuário cadastrado com sucesso: nene@sptech.school
+2024-12-08 02:54:12 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-08 02:54:12 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-08 02:54:12 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-08 02:54:20 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-08 02:54:20 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-08 02:54:20 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 4.687 seconds (process running for 5.182)
+2024-12-08 02:54:41 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-08 02:54:41 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-08 02:54:41 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-12-08 02:54:41 INFO  [http-nio-8080-exec-2] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-08 02:55:04 INFO  [http-nio-8080-exec-4] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-08 03:02:08 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-08 03:02:08 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-08 03:02:08 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-08 03:02:15 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-08 03:02:16 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-08 03:02:16 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 4.613 seconds (process running for 5.099)
+2024-12-08 03:02:26 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-08 03:02:26 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-08 03:02:26 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-08 13:13:30 INFO  [main] o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-12-08 13:13:31 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-08 13:13:32 INFO  [main] o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2024-12-08 13:13:32 INFO  [main] back.SpringBackendApplicationTests - Started SpringBackendApplicationTests in 5.419 seconds (process running for 6.903)
+2024-12-08 13:13:32 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-08 13:13:32 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-08 13:13:32 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-08 13:16:04 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-08 13:16:04 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-08 13:16:04 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 4.532 seconds (process running for 5.07)
+2024-12-08 13:16:51 INFO  [http-nio-8080-exec-6] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-08 13:16:51 INFO  [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-08 13:16:51 INFO  [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2024-12-08 13:16:57 INFO  [http-nio-8080-exec-10] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-08 13:25:43 INFO  [http-nio-8080-exec-7] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-08 13:25:53 INFO  [http-nio-8080-exec-8] back.service.service.UsuarioService - Usuário cadastrado com sucesso: nene@sptech.school
+2024-12-08 13:35:27 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-08 13:35:27 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-08 13:35:27 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-08 13:35:41 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-08 13:35:42 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-08 13:35:42 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 4.748 seconds (process running for 5.242)
+2024-12-08 13:35:43 INFO  [http-nio-8080-exec-5] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-08 13:35:43 INFO  [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-08 13:35:43 INFO  [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2024-12-08 13:36:08 INFO  [http-nio-8080-exec-2] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-08 13:38:36 INFO  [http-nio-8080-exec-1] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-08 13:38:47 INFO  [http-nio-8080-exec-4] back.service.service.UsuarioService - Usuário cadastrado com sucesso: nene@sptech.school
+2024-12-08 14:27:31 INFO  [http-nio-8080-exec-7] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-12-09T14:00
+2024-12-08 14:34:35 INFO  [http-nio-8080-exec-3] back.service.service.UsuarioService - Funcionario cadastrado com sucesso: gab.t@gmail.com
+2024-12-08 14:54:12 INFO  [http-nio-8080-exec-1] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-01-01T14:00
+2024-12-08 14:54:23 INFO  [http-nio-8080-exec-6] b.service.service.AgendamentoService - Agendamento atualizado com sucesso: AgendamentoResponseDTO(id=5, data=2024-12-01T14:00, fkFuncionario=Funcionario(id=2, nome=Gabi, email=gab.t@gmail.com, senha=12341234, telefone=null), fkUsuario=Usuario(id=1, nome=Christian, email=chris@sptech.school, senha=$2a$10$G4.ouJbJf3SKN04tQ1EwJuho0eROL/.ruszoYqLvYivu9X4eamvmS, telefone=1111111111, role=null, dataCadastro=2024-12-08T13:38:36.497081), fkServico=Servico(id=101, nome=Corte Masculino, preco=50.0, descricao=Corte de cabelo masculino), fkAvaliacao=null)
+2024-12-08 15:04:13 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-08 15:04:13 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-08 15:04:13 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-08 15:04:20 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-08 15:04:21 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-08 15:04:21 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 4.527 seconds (process running for 5.009)
+2024-12-08 15:04:48 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-08 15:04:48 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-08 15:04:48 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-12-08 15:04:49 INFO  [http-nio-8080-exec-2] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-08 15:04:58 INFO  [http-nio-8080-exec-3] back.service.service.UsuarioService - Usuário cadastrado com sucesso: nene@sptech.school
+2024-12-08 15:05:16 INFO  [http-nio-8080-exec-5] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-08 15:06:06 INFO  [http-nio-8080-exec-10] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrinasalestulio@gmail.com
+2024-12-08 15:08:39 INFO  [http-nio-8080-exec-9] back.service.service.UsuarioService - Funcionario cadastrado com sucesso: caleb@gmail.com
+2024-12-08 15:08:58 INFO  [http-nio-8080-exec-6] back.service.service.UsuarioService - Funcionario cadastrado com sucesso: kiki@gmail.com
+2024-12-08 15:09:12 INFO  [http-nio-8080-exec-9] back.service.service.ServicoService - Serviço cadastrado com sucesso: Manicure
+2024-12-08 15:09:21 INFO  [http-nio-8080-exec-1] back.service.service.ServicoService - Serviço cadastrado com sucesso: Corte masculino
+2024-12-08 15:10:29 INFO  [http-nio-8080-exec-9] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=1, data=2024-12-08T13:00, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=2, nome=Benedita, email=nene@sptech.school, senha=$2a$10$TysMOJbwj7zpe7aN2/laweWIYG7zlM8aQp2HAkzme7eIwepf1z1m2, telefone=1111111111, role=null, dataCadastro=2024-12-08T15:04:58.060673), fkServico=Servico(id=2, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-08 15:11:27 INFO  [http-nio-8080-exec-2] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=2, data=2024-12-10T10:00:13, fkFuncionario=Funcionario(id=2, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=Christian, email=chris@sptech.school, senha=$2a$10$Is3bZ66c5Exe8KPXMmOAYuLLbzSvI26rOcSR71s18/Bp33KLK1.Te, telefone=1111111111, role=null, dataCadastro=2024-12-08T15:04:49.055647), fkServico=Servico(id=1, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-08 15:12:28 INFO  [http-nio-8080-exec-9] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=3, data=2024-12-25T18:15:17, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=Christian, email=chris@sptech.school, senha=$2a$10$Is3bZ66c5Exe8KPXMmOAYuLLbzSvI26rOcSR71s18/Bp33KLK1.Te, telefone=1111111111, role=null, dataCadastro=2024-12-08T15:04:49.055647), fkServico=Servico(id=2, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-08 15:12:39 INFO  [http-nio-8080-exec-8] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=4, data=2024-12-24T17:10:28, fkFuncionario=Funcionario(id=2, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=Christian, email=chris@sptech.school, senha=$2a$10$Is3bZ66c5Exe8KPXMmOAYuLLbzSvI26rOcSR71s18/Bp33KLK1.Te, telefone=1111111111, role=null, dataCadastro=2024-12-08T15:04:49.055647), fkServico=Servico(id=2, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-08 15:12:57 INFO  [http-nio-8080-exec-7] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=5, data=2024-12-17T16:00:48, fkFuncionario=Funcionario(id=2, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=Christian, email=chris@sptech.school, senha=$2a$10$Is3bZ66c5Exe8KPXMmOAYuLLbzSvI26rOcSR71s18/Bp33KLK1.Te, telefone=1111111111, role=null, dataCadastro=2024-12-08T15:04:49.055647), fkServico=Servico(id=1, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-08 15:13:06 INFO  [http-nio-8080-exec-8] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=6, data=2024-12-18T18:15:57, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=Christian, email=chris@sptech.school, senha=$2a$10$Is3bZ66c5Exe8KPXMmOAYuLLbzSvI26rOcSR71s18/Bp33KLK1.Te, telefone=1111111111, role=null, dataCadastro=2024-12-08T15:04:49.055647), fkServico=Servico(id=2, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-08 15:13:29 INFO  [http-nio-8080-exec-2] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=7, data=2024-12-19T17:00:18, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=Christian, email=chris@sptech.school, senha=$2a$10$Is3bZ66c5Exe8KPXMmOAYuLLbzSvI26rOcSR71s18/Bp33KLK1.Te, telefone=1111111111, role=null, dataCadastro=2024-12-08T15:04:49.055647), fkServico=Servico(id=1, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-08 15:14:21 INFO  [http-nio-8080-exec-9] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=8, data=2024-12-24T17:00:11, fkFuncionario=Funcionario(id=2, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=Christian, email=chris@sptech.school, senha=$2a$10$Is3bZ66c5Exe8KPXMmOAYuLLbzSvI26rOcSR71s18/Bp33KLK1.Te, telefone=1111111111, role=null, dataCadastro=2024-12-08T15:04:49.055647), fkServico=Servico(id=1, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-08 15:17:55 INFO  [http-nio-8080-exec-3] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-12-08T13:00
+2024-12-08 15:17:59 INFO  [http-nio-8080-exec-2] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-12-10T10:00:13
+2024-12-08 15:18:00 INFO  [http-nio-8080-exec-7] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-12-24T17:10:28
+2024-12-08 15:20:24 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-08 15:20:25 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-12-08 15:20:25 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-12-08 15:20:31 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authService
+2024-12-08 15:20:32 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-12-08 15:20:32 INFO  [main] back.SpringBackendApplication - Started SpringBackendApplication in 5.175 seconds (process running for 5.766)
+2024-12-08 15:21:08 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-08 15:21:08 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-08 15:21:08 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-12-08 15:21:08 INFO  [http-nio-8080-exec-1] back.service.service.UsuarioService - Usuário cadastrado com sucesso: chris@sptech.school
+2024-12-08 15:21:17 INFO  [http-nio-8080-exec-2] back.service.service.UsuarioService - Usuário cadastrado com sucesso: nene@sptech.school
+2024-12-08 15:22:32 INFO  [http-nio-8080-exec-5] back.service.service.EmpresaService - Empresa cadastrada com sucesso: sabrina.tulio@sptech.school
+2024-12-08 15:23:03 INFO  [http-nio-8080-exec-3] back.service.service.UsuarioService - Funcionario cadastrado com sucesso: caleb@gmail.com
+2024-12-08 15:23:12 INFO  [http-nio-8080-exec-2] back.service.service.UsuarioService - Funcionario cadastrado com sucesso: kiki@gmail.com
+2024-12-08 15:23:24 INFO  [http-nio-8080-exec-10] back.service.service.ServicoService - Serviço cadastrado com sucesso: Corte masculino
+2024-12-08 15:23:32 INFO  [http-nio-8080-exec-8] back.service.service.ServicoService - Serviço cadastrado com sucesso: Manicure
+2024-12-08 15:23:47 INFO  [http-nio-8080-exec-3] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=1, data=2024-12-09T16:00:35, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=Christian, email=chris@sptech.school, senha=$2a$10$/S6cNlTkoKUk3ZjldnAm4OWaiP7S4qFByXVBK9NYP2hWlSFUTCxRm, telefone=1111111111, role=null, dataCadastro=2024-12-08T15:21:08.791706), fkServico=Servico(id=1, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-08 15:24:10 INFO  [http-nio-8080-exec-10] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=2, data=2024-12-10T03:00, fkFuncionario=Funcionario(id=2, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=2, nome=Benedita, email=nene@sptech.school, senha=$2a$10$eiDbNxVyLYdQ85/qkkNn5eeK8HQ.jgc9aOzcajmTYHlMO/66AKTfm, telefone=1111111111, role=null, dataCadastro=2024-12-08T15:21:17.847466), fkServico=Servico(id=2, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-08 15:24:24 INFO  [http-nio-8080-exec-9] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=3, data=2024-12-10T15:24:10, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=Christian, email=chris@sptech.school, senha=$2a$10$/S6cNlTkoKUk3ZjldnAm4OWaiP7S4qFByXVBK9NYP2hWlSFUTCxRm, telefone=1111111111, role=null, dataCadastro=2024-12-08T15:21:08.791706), fkServico=Servico(id=1, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-08 15:24:38 INFO  [http-nio-8080-exec-6] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=4, data=2024-12-17T18:15:24, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=Christian, email=chris@sptech.school, senha=$2a$10$/S6cNlTkoKUk3ZjldnAm4OWaiP7S4qFByXVBK9NYP2hWlSFUTCxRm, telefone=1111111111, role=null, dataCadastro=2024-12-08T15:21:08.791706), fkServico=Servico(id=1, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-08 15:24:44 INFO  [http-nio-8080-exec-4] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=5, data=2024-12-08T15:24:38, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=Christian, email=chris@sptech.school, senha=$2a$10$/S6cNlTkoKUk3ZjldnAm4OWaiP7S4qFByXVBK9NYP2hWlSFUTCxRm, telefone=1111111111, role=null, dataCadastro=2024-12-08T15:21:08.791706), fkServico=Servico(id=1, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-08 15:24:49 INFO  [http-nio-8080-exec-10] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=6, data=2024-12-08T15:24:44, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=Christian, email=chris@sptech.school, senha=$2a$10$/S6cNlTkoKUk3ZjldnAm4OWaiP7S4qFByXVBK9NYP2hWlSFUTCxRm, telefone=1111111111, role=null, dataCadastro=2024-12-08T15:21:08.791706), fkServico=Servico(id=1, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-08 15:24:55 INFO  [http-nio-8080-exec-2] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=7, data=2024-12-08T15:24:49, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=Christian, email=chris@sptech.school, senha=$2a$10$/S6cNlTkoKUk3ZjldnAm4OWaiP7S4qFByXVBK9NYP2hWlSFUTCxRm, telefone=1111111111, role=null, dataCadastro=2024-12-08T15:21:08.791706), fkServico=Servico(id=1, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-08 15:25:06 INFO  [http-nio-8080-exec-1] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=8, data=2024-12-08T15:24:55, fkFuncionario=Funcionario(id=2, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=Christian, email=chris@sptech.school, senha=$2a$10$/S6cNlTkoKUk3ZjldnAm4OWaiP7S4qFByXVBK9NYP2hWlSFUTCxRm, telefone=1111111111, role=null, dataCadastro=2024-12-08T15:21:08.791706), fkServico=Servico(id=1, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-08 15:25:31 INFO  [http-nio-8080-exec-10] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=9, data=2024-12-08T15:25:24, fkFuncionario=Funcionario(id=1, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=1, nome=Christian, email=chris@sptech.school, senha=$2a$10$/S6cNlTkoKUk3ZjldnAm4OWaiP7S4qFByXVBK9NYP2hWlSFUTCxRm, telefone=1111111111, role=null, dataCadastro=2024-12-08T15:21:08.791706), fkServico=Servico(id=1, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-08 15:25:44 INFO  [http-nio-8080-exec-10] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-12-09T16:00:35
+2024-12-08 15:25:45 INFO  [http-nio-8080-exec-8] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-12-10T15:24:10
+2024-12-08 15:25:47 INFO  [http-nio-8080-exec-3] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-12-08T15:24:38
+2024-12-08 15:25:48 INFO  [http-nio-8080-exec-1] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-12-08T15:24:49
+2024-12-08 15:25:50 INFO  [http-nio-8080-exec-8] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-12-17T18:15:24
+2024-12-08 15:25:51 INFO  [http-nio-8080-exec-9] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-12-08T15:24:44
+2024-12-08 15:25:52 INFO  [http-nio-8080-exec-6] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-12-08T15:24:55
+2024-12-08 15:25:53 INFO  [http-nio-8080-exec-5] b.service.service.AgendamentoService - Agendamento deletado com sucesso: 2024-12-08T15:25:24
+2024-12-08 15:30:09 INFO  [http-nio-8080-exec-7] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=10, data=2024-12-09T16:00:59, fkFuncionario=Funcionario(id=2, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=2, nome=Benedita, email=nene@sptech.school, senha=$2a$10$eiDbNxVyLYdQ85/qkkNn5eeK8HQ.jgc9aOzcajmTYHlMO/66AKTfm, telefone=1111111111, role=null, dataCadastro=2024-12-08T15:21:17.847466), fkServico=Servico(id=2, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-08 15:30:14 INFO  [http-nio-8080-exec-3] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=11, data=2024-12-08T15:30:09, fkFuncionario=Funcionario(id=2, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=2, nome=Benedita, email=nene@sptech.school, senha=$2a$10$eiDbNxVyLYdQ85/qkkNn5eeK8HQ.jgc9aOzcajmTYHlMO/66AKTfm, telefone=1111111111, role=null, dataCadastro=2024-12-08T15:21:17.847466), fkServico=Servico(id=2, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-08 15:30:19 INFO  [http-nio-8080-exec-2] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=12, data=2024-12-08T15:30:14, fkFuncionario=Funcionario(id=2, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=2, nome=Benedita, email=nene@sptech.school, senha=$2a$10$eiDbNxVyLYdQ85/qkkNn5eeK8HQ.jgc9aOzcajmTYHlMO/66AKTfm, telefone=1111111111, role=null, dataCadastro=2024-12-08T15:21:17.847466), fkServico=Servico(id=2, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-08 15:30:24 INFO  [http-nio-8080-exec-6] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=13, data=2024-12-08T15:30:19, fkFuncionario=Funcionario(id=2, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=2, nome=Benedita, email=nene@sptech.school, senha=$2a$10$eiDbNxVyLYdQ85/qkkNn5eeK8HQ.jgc9aOzcajmTYHlMO/66AKTfm, telefone=1111111111, role=null, dataCadastro=2024-12-08T15:21:17.847466), fkServico=Servico(id=2, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-08 15:30:31 INFO  [http-nio-8080-exec-5] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=14, data=2024-12-08T15:30:24, fkFuncionario=Funcionario(id=2, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=2, nome=Benedita, email=nene@sptech.school, senha=$2a$10$eiDbNxVyLYdQ85/qkkNn5eeK8HQ.jgc9aOzcajmTYHlMO/66AKTfm, telefone=1111111111, role=null, dataCadastro=2024-12-08T15:21:17.847466), fkServico=Servico(id=2, nome=null, preco=null, descricao=null), fkAvaliacao=null)
+2024-12-08 15:32:24 INFO  [http-nio-8080-exec-10] b.service.service.AgendamentoService - Agendamento cadastrado com sucesso: AgendamentoResponseDTO(id=15, data=2024-12-08T15:32:19, fkFuncionario=Funcionario(id=2, nome=null, email=null, senha=null, telefone=null), fkUsuario=Usuario(id=2, nome=Benedita, email=nene@sptech.school, senha=$2a$10$eiDbNxVyLYdQ85/qkkNn5eeK8HQ.jgc9aOzcajmTYHlMO/66AKTfm, telefone=1111111111, role=null, dataCadastro=2024-12-08T15:21:17.847466), fkServico=Servico(id=2, nome=null, preco=null, descricao=null), fkAvaliacao=null)

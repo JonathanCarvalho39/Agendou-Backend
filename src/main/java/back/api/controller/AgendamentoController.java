@@ -1,10 +1,13 @@
 package back.api.controller;
 
 import back.domain.dto.request.AgendamentoRequestDTO;
+import back.domain.dto.response.AgendamentoPorMesDTO;
 import back.domain.dto.response.AgendamentoResponseDTO;
+import back.domain.dto.response.AgendamentosPorMesDTO;
 import back.domain.model.Agendamento;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import back.service.service.AgendamentoService;
@@ -13,7 +16,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/agendamentos")
@@ -75,6 +81,27 @@ public class AgendamentoController {
         return ResponseEntity.status(200).body(service.listarAgendamentos());
     }
 
+    @GetMapping("/usuarios-ativos")
+    public ResponseEntity<List<Integer>> buscarUsuariosAtivos() {
+        try {
+            List<Integer> usuariosAtivos = service.buscarUsuariosAtivos();
+            return ResponseEntity.ok(usuariosAtivos);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ArrayList<>());
+        }
+    }
+
+    @Operation(summary = "Obter quantidade de agendamentos por mês", description = "Retorna a quantidade de agendamentos por mês")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Dados retornados com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Erro na requisição")
+    })
+    @GetMapping("/agendamentos-por-mes")
+    public Map<String, Long> getAgendamentosPorMes() {
+        return service.getAgendamentosPorMes();
+    }
+
+
     @Operation(summary = "Listar agendamento pelo id", description = "Lista as informações do agendamento pelo id.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Agendamento encontrado.",
@@ -86,6 +113,13 @@ public class AgendamentoController {
     public ResponseEntity<?> getAgendamentoById(@PathVariable Integer id) {
         return service.buscarAgendamentoPorId(id);
     }
+
+    @GetMapping("/mes-atual-ou-ultimo")
+    public ResponseEntity<List<AgendamentoResponseDTO>> listarAgendamentosPorMesAtualOuUltimo() {
+        List<AgendamentoResponseDTO> agendamentos = service.listarAgendamentosPorMesAtualOuUltimo();
+        return ResponseEntity.ok(agendamentos);
+    }
+
 
 
 }

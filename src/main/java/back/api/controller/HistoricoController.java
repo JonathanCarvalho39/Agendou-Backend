@@ -122,7 +122,6 @@ public class HistoricoController {
         return ResponseEntity.ok(agendamentosPassados);
     }
 
-
     @Operation(summary = "Obter usuários ativos", description = "Obtém a lista de usuários que possuem 4 ou mais agendamentos em um intervalo de 2 meses")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuários ativos obtidos com sucesso"),
@@ -138,8 +137,6 @@ public class HistoricoController {
 
         return ResponseEntity.ok(usuariosAtivos);
     }
-
-
 
     @Operation(summary = "Obter agendamentos do último mês", description = "Retorna o total de agendamentos e o intervalo do mês anterior")
     @ApiResponses(value = {

@@ -154,8 +154,13 @@ public class HistoricoService {
         Long totalCancelados = repository.countCanceladosNoPeriodo(inicioMes, agora);
         long diasNoMesAteAgora = ChronoUnit.DAYS.between(inicioMes, agora) + 1;
 
+        if (diasNoMesAteAgora == 0) {
+            return 0.0;
+        }
+
         return totalCancelados.doubleValue() / diasNoMesAteAgora;
     }
+
 
 
     public List<AgendamentosPorMesDTO> obterTotalAgendamentosPorMes() {
@@ -164,8 +169,6 @@ public class HistoricoService {
                 .map(obj -> new AgendamentosPorMesDTO((String) obj[0], (Long) obj[1]))
                 .collect(Collectors.toList());
     }
-
-
 
     public byte[] getHistoricoCsv(LocalDateTime dataInicio, LocalDateTime dataFim) throws IOException {
 
