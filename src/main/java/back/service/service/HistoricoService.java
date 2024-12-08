@@ -166,7 +166,6 @@ public class HistoricoService {
     }
 
 
-
     public byte[] getHistoricoCsv(LocalDateTime dataInicio, LocalDateTime dataFim) throws IOException {
 
         List<HistoricoAgendamento> historicoAgendamentos = repository.findByDataBetween(dataInicio, dataFim);
@@ -186,13 +185,16 @@ public class HistoricoService {
         try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
              OutputStreamWriter writer = new OutputStreamWriter(outputStream)) {
 
-            writer.write("Data;StatusAnterior;StatusAtual;Agendamento\n");
+            writer.write("Data;StatusAnterior;StatusAtual;NomeServico;NomeFuncionario;NomeCliente;Agendamento\n");
 
             for (HistoricoResponseDTO dto : historicoResponseDTOS) {
-                writer.write(String.format("%s;%s;%s;%s\n",
+                writer.write(String.format("%s;%s;%s;%s;%s;%s;%s\n",
                         dto.getData(),
                         dto.getStatusAnterior(),
                         dto.getStatusAtual(),
+                        dto.getNomeServico(),
+                        dto.getNomeFuncionario(),
+                        dto.getNomeUsuario(),
                         dto.getAgendamento() != null ? dto.getAgendamento().toString() : ""));
             }
 
