@@ -39,13 +39,14 @@ public class UsuarioService {
         System.out.println("Iniciando login para o email: " + email);
 
         Optional<Usuario> optionalUsuario = usuarioRepository.findByEmail(email);
-        var token = tokenService.generateTokenUser(optionalUsuario.get());
-        System.out.println("Token: " + token);
 
         if(optionalUsuario.isEmpty()){
             logger.error("Falha na autenticação do usuário: O usuário está vazio ou não existe");
             return ResponseEntity.status(401).build();
         }
+
+        var token = tokenService.generateTokenUser(optionalUsuario.get());
+        System.out.println("Token: " + token);
 
         Usuario usuarioEntity = optionalUsuario.get();
         UsuarioResponseDTO usuarioResponse = mapper.toUsuarioResponseDto(usuarioEntity);
