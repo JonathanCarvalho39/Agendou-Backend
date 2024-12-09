@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2024-12-07 22:52:27 ERROR [http-nio-8080-exec-5] o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.util.NoSuchElementException: No value present] with root cause
 java.util.NoSuchElementException: No value present
 	at java.base/java.util.Optional.get(Optional.java:143) ~[na:na]
@@ -19759,3 +19760,23 @@ java.lang.IllegalArgumentException: The given id must not be null
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
 	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+=======
+2024-12-07 23:58:42 ERROR [main] o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 1 of constructor in back.service.service.AvaliacaoService required a bean of type 'back.domain.mapper.AvaliacaoMapper' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'back.domain.mapper.AvaliacaoMapper' in your configuration.
+
+>>>>>>> 1403d8da684e55e98aaec9bd5feeea7ca272c2d3

@@ -147,8 +147,14 @@ public class HistoricoService {
     }
 
 
-    public Long contarCancelados() {
-        return repository.countCancelados();
+    public Double calcularMediaCanceladosMes() {
+        LocalDateTime inicioMes = LocalDateTime.now().withDayOfMonth(1).withHour(0).withMinute(0).withSecond(0);
+        LocalDateTime agora = LocalDateTime.now();
+
+        Long totalCancelados = repository.countCanceladosNoPeriodo(inicioMes, agora);
+        long diasNoMesAteAgora = ChronoUnit.DAYS.between(inicioMes, agora) + 1;
+
+        return totalCancelados.doubleValue() / diasNoMesAteAgora;
     }
 
 
@@ -158,6 +164,8 @@ public class HistoricoService {
                 .map(obj -> new AgendamentosPorMesDTO((String) obj[0], (Long) obj[1]))
                 .collect(Collectors.toList());
     }
+
+
 
     public byte[] getHistoricoCsv(LocalDateTime dataInicio, LocalDateTime dataFim) throws IOException {
 
