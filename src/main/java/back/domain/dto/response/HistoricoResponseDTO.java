@@ -11,16 +11,12 @@ import java.time.LocalDateTime;
 @Data
 public class HistoricoResponseDTO {
 
+    private Integer id;
     private LocalDateTime data;
-    private Integer idAgendamento;
     private String statusAnterior;
     private String statusAtual;
     private AgendamentoSimplificadoResponseDTO agendamento;
-    private Integer id;
-    private String nomeUsuario;
-    private String nomeFuncionario;
-    private String nomeServico;
 
-    public HistoricoResponseDTO(Integer id, LocalDateTime data, String statusAnterior, String statusAtual, AgendamentoSimplificadoResponseDTO agendamentoSimplificado) {
+    public HistoricoResponseDTO(Integer id, String statusAnterior, String statusAtual, AgendamentoSimplificadoResponseDTO agendamentoSimplificadoResponseDTO) {
     }
 }
