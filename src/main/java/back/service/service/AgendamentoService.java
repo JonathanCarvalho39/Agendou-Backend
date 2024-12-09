@@ -3,10 +3,7 @@ package back.service.service;
 import back.api.controller.HistoricoController;
 import back.domain.dto.request.AgendamentoRequestDTO;
 import back.domain.dto.request.HistoricoRequestDTO;
-import back.domain.dto.response.AgendamentoPorMesDTO;
-import back.domain.dto.response.AgendamentoResponseDTO;
-import back.domain.dto.response.AgendamentoSimplificadoResponseDTO;
-import back.domain.dto.response.AgendamentosPorMesDTO;
+import back.domain.dto.response.*;
 import back.domain.mapper.AgendamentoMapper;
 import back.domain.model.*;
 import back.domain.repository.*;
@@ -88,7 +85,14 @@ public class AgendamentoService {
     public List<AgendamentoResponseDTO> listarAgendamentosPorFuncionario(Integer funcionarioId) {
         List<Agendamento> agendamentos = repository.findAllByFkFuncionarioId(funcionarioId);
 
-       
+
+        return agendamentos.stream()
+                .map(mapper::toAgendamentoResponseDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<AgendamentoResponseDTO> listarAgendamentosPorUsuario(Integer usuarioId) {
+        List<Agendamento> agendamentos = repository.findAllByFkUsuarioId(usuarioId);
         return agendamentos.stream()
                 .map(mapper::toAgendamentoResponseDto)
                 .collect(Collectors.toList());
@@ -169,21 +173,19 @@ public class AgendamentoService {
 
 
     public ResponseEntity<?> buscarAgendamentoPorId(Integer id) {
-        List<Agendamento> agendamentos = repository.findAll();
-        Collections.sort(agendamentos, Comparator.comparing(Agendamento::getId));
+        Optional<Agendamento> agendamentoExistente = repository.findById(id);
 
-        int index = Collections.binarySearch(agendamentos, new Agendamento(id), Comparator.comparing(Agendamento::getId));
-
-        if (index < 0) {
-            logger.error("Agendamento com id " + id + " não encontrado");
-            return ResponseEntity.status(404).body("Agendamento não encontrado");
+        if (agendamentoExistente.isEmpty()) {
+            logger.error("Empresa com id " + id + " não encontrado");
+            return ResponseEntity.status(404).body("Empresa não encontrado");
         }
 
-        Agendamento agendamento = agendamentos.get(index);
+        Agendamento agendamento = agendamentoExistente.get();
         AgendamentoResponseDTO responseDTO = mapper.toAgendamentoResponseDto(agendamento);
 
         return ResponseEntity.status(200).body(responseDTO);
     }
+
 
     public List<Integer> buscarUsuariosAtivos() {
         LocalDateTime dataInicio = LocalDateTime.now().minusMonths(1);

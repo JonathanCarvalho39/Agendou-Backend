@@ -50,5 +50,7 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento, Intege
     @Query("SELECT EXTRACT(HOUR FROM a.data) AS hora, COUNT(a) FROM Agendamento a GROUP BY EXTRACT(HOUR FROM a.data) ORDER BY EXTRACT(HOUR FROM a.data)")
     List<Object[]> findHorariosPico();
 
+    List<Agendamento> findAllByFkUsuarioId(Integer idUsuario);
+
 
 }
