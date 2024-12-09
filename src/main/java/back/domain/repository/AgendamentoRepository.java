@@ -33,7 +33,22 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento, Intege
             "ORDER BY FUNCTION('MONTH', a.data)")
     List<Object[]> findAgendamentosPorMes();
 
+    @Query("SELECT f.nome, COUNT(a) AS totalAgendamentos " +
+            "FROM Agendamento a " +
+            "JOIN a.fkFuncionario f " +
+            "GROUP BY f.id, f.nome " +
+            "ORDER BY totalAgendamentos DESC")
+    List<Object[]> findFuncionariosMaisRequisitados();
 
+    @Query("SELECT s.nome, COUNT(a) AS totalAgendamentos " +
+            "FROM Agendamento a " +
+            "JOIN a.fkServico s " +
+            "GROUP BY s.id, s.nome " +
+            "ORDER BY totalAgendamentos DESC")
+    List<Object[]> findServicosMaisRequisitados();
+
+    @Query("SELECT EXTRACT(HOUR FROM a.data) AS hora, COUNT(a) FROM Agendamento a GROUP BY EXTRACT(HOUR FROM a.data) ORDER BY EXTRACT(HOUR FROM a.data)")
+    List<Object[]> findHorariosPico();
 
 
 }

@@ -1,9 +1,9 @@
 package back.api.controller;
 
 import back.domain.dto.request.AgendamentoRequestDTO;
-import back.domain.dto.response.AgendamentoPorMesDTO;
+
 import back.domain.dto.response.AgendamentoResponseDTO;
-import back.domain.dto.response.AgendamentosPorMesDTO;
+
 import back.domain.model.Agendamento;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,6 +120,21 @@ public class AgendamentoController {
         return ResponseEntity.ok(agendamentos);
     }
 
+    @GetMapping("/funcionarios-mais-requisitados")
+    public ResponseEntity<List<Map<String, Object>>> getFuncionariosMaisRequisitados() {
+        List<Map<String, Object>> funcionarios = service.getFuncionariosMaisRequisitados();
+        return ResponseEntity.ok(funcionarios);
+    }
 
+    @GetMapping("/servicos-mais-requisitados")
+    public ResponseEntity<List<Map<String, Object>>> getServicosMaisRequisitados() {
+        List<Map<String, Object>> servicos = service.getServicosMaisRequisitados();
+        return ResponseEntity.ok(servicos);
+    }
+
+    @GetMapping("/horarios-pico")
+    public List<Object[]> getHorariosPico() {
+        return service.getHorariosPico();
+    }
 
 }

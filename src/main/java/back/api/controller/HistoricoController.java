@@ -163,15 +163,15 @@ public class HistoricoController {
     }
 
 
-    @Operation(summary = "Média de agendamentos cancelados", description = "Retorna a média de agendamentos cancelados por dia desde o início do mês")
+    @Operation(summary = "Quantidade de cancelamentos", description = "Retorna a quantidade total de cancelamentos registrados")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Média calculada com sucesso"),
-            @ApiResponse(responseCode = "500", description = "Erro ao calcular a média")
+            @ApiResponse(responseCode = "200", description = "Quantidade de cancelamentos retornada com sucesso"),
+            @ApiResponse(responseCode = "500", description = "Erro ao calcular a quantidade")
     })
-    @GetMapping("/media-cancelados")
-    public ResponseEntity<Double> calcularMediaCanceladosMes() {
-        Double media = service.calcularMediaCanceladosMes();
-        return ResponseEntity.ok(media);
+    @GetMapping("/cancelados")
+    public ResponseEntity<Long> contarCancelados() {
+        Long totalCancelados = service.contarCancelados();
+        return ResponseEntity.ok(totalCancelados);
     }
 
 

@@ -109,6 +109,34 @@ public class AgendamentoService {
         return agendamentosPorMes;
     }
 
+    public List<Map<String, Object>> getFuncionariosMaisRequisitados() {
+        List<Object[]> results = repository.findFuncionariosMaisRequisitados();
+        List<Map<String, Object>> funcionarios = new ArrayList<>();
+
+        for (Object[] result : results) {
+            Map<String, Object> funcionarioData = new HashMap<>();
+            funcionarioData.put("nome", result[0]);
+            funcionarioData.put("quantidade", result[1]);
+            funcionarios.add(funcionarioData);
+        }
+
+        return funcionarios;
+    }
+
+    public List<Map<String, Object>> getServicosMaisRequisitados() {
+        List<Object[]> results = repository.findServicosMaisRequisitados();
+        List<Map<String, Object>> servicos = new ArrayList<>();
+
+        for (Object[] result : results) {
+            Map<String, Object> servicoData = new HashMap<>();
+            servicoData.put("nome", result[0]);
+            servicoData.put("quantidade", result[1]);
+            servicos.add(servicoData);
+        }
+
+        return servicos;
+    }
+
     public List<AgendamentoResponseDTO> listarAgendamentos() {
         List<Agendamento> agendamentos = repository.findAll();
         return agendamentos.stream()
@@ -133,6 +161,10 @@ public class AgendamentoService {
         return agendamentosDoMesAtual.stream()
                 .map(mapper::toAgendamentoResponseDto)
                 .collect(Collectors.toList());
+    }
+
+    public List<Object[]> getHorariosPico() {
+        return repository.findHorariosPico();
     }
 
 
