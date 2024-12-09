@@ -169,14 +169,17 @@ public class AgendamentoService {
 
 
     public ResponseEntity<?> buscarAgendamentoPorId(Integer id) {
-        Optional<Agendamento> agendamentoExistente = repository.findById(id);
+        List<Agendamento> agendamentos = repository.findAll();
+        Collections.sort(agendamentos, Comparator.comparing(Agendamento::getId));
 
-        if (agendamentoExistente.isEmpty()) {
+        int index = Collections.binarySearch(agendamentos, new Agendamento(id), Comparator.comparing(Agendamento::getId));
+
+        if (index < 0) {
             logger.error("Agendamento com id " + id + " não encontrado");
             return ResponseEntity.status(404).body("Agendamento não encontrado");
         }
 
-        Agendamento agendamento = agendamentoExistente.get();
+        Agendamento agendamento = agendamentos.get(index);
         AgendamentoResponseDTO responseDTO = mapper.toAgendamentoResponseDto(agendamento);
 
         return ResponseEntity.status(200).body(responseDTO);
