@@ -7,10 +7,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ServicoResponseDTO {
+public class LoginResponseDTO {
 
-        private Integer id;
-        private String nome;
-        private Double preco;
-        private String descricao;
+    private EmpresaResponseDTO usuario;
+    private String token;
 }

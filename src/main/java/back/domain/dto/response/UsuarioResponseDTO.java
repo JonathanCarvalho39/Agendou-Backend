@@ -1,8 +1,11 @@
 package back.domain.dto.response;
 
+import back.domain.enums.UsuarioRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,4 +17,7 @@ public class UsuarioResponseDTO {
     private String email;
     private String senha;
     private String telefone;
+    private UsuarioRole role;
+    private String token;
+    private LocalDateTime dataCadastro;
 }

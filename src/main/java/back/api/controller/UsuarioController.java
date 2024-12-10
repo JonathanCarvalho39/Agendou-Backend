@@ -2,6 +2,7 @@ package back.api.controller;
 
 import back.domain.dto.request.UsuarioRequestDTO;
 import back.domain.dto.response.UsuarioResponseDTO;
+import back.domain.model.Agendamento;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -29,10 +30,10 @@ public class UsuarioController {
             @ApiResponse(responseCode = "200", description = "Successful login"),
             @ApiResponse(responseCode = "401", description = "Unauthorized")
     })
-    @GetMapping("/login")
-    public ResponseEntity<String> login(@RequestParam String email, @RequestParam String senha) {
-        System.out.println("Recebida requisição de login com email: " + email);
-        return service.login(email, senha);
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody @Valid UsuarioRequestDTO usuario) {
+        System.out.println("Recebida requisição de login com email: " + usuario.getEmail());
+        return service.login(usuario.getEmail(), usuario.getSenha());
     }
 
     @Operation(summary = "Lista de usuários", description = "Lista todos os usuários")
@@ -44,6 +45,18 @@ public class UsuarioController {
     @GetMapping("/listar")
     public ResponseEntity<List<UsuarioResponseDTO>> listarUsuarios() {
         return ResponseEntity.status(200).body(service.listarUsuarios());
+    }
+
+    @Operation(summary = "Listar infos do usuario pelo id", description = "Lista as informações do usuário pelo id.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Usuario encontrado.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Agendamento.class))),
+            @ApiResponse(responseCode = "404", description = "Usuario não encontrado.")
+    })
+    @GetMapping("/listar/{id}")
+    public ResponseEntity<?> getUsuarioById(@PathVariable Integer id) {
+        return service.buscarUsuarioPorID(id);
     }
 
     @Operation(summary = "Cadastrar usuário", description = "Cadastrar um novo usuário")
@@ -74,5 +87,17 @@ public class UsuarioController {
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<?> deletarUsuario(@PathVariable Integer id) {
         return service.deletarUsuario(id);
+    }
+
+
+    @Operation(summary = "Contar novos clientes", description = "Retorna a quantidade de novos clientes cadastrados desde o início do mês")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Quantidade de novos clientes obtida com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Erro ao obter a quantidade de novos clientes")
+    })
+    @GetMapping("/novos-clientes")
+    public ResponseEntity<Long> contarNovosUsuariosDoMes() {
+        long quantidade = service.contarNovosUsuariosDoMes();
+        return ResponseEntity.ok(quantidade);
     }
 }

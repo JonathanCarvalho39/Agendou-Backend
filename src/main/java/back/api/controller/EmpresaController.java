@@ -2,6 +2,7 @@ package back.api.controller;
 
 import back.domain.dto.request.EmpresaRequestDTO;
 import back.domain.dto.response.EmpresaResponseDTO;
+import back.domain.model.Agendamento;
 import back.service.service.EmpresaService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -29,10 +30,10 @@ public class EmpresaController {
             @ApiResponse(responseCode = "200", description = "Login realizado com sucesso"),
             @ApiResponse(responseCode = "401", description = "Não autorizado")
     })
-    @GetMapping("/login")
-    public ResponseEntity<String> login(@RequestParam String email, @RequestParam String senha) {
-        System.out.println("Recebida requisição de login com email: " + email);
-        return service.login(email, senha);
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody @Valid EmpresaRequestDTO empresa) {
+        System.out.println("Recebida requisição de login com email: " + empresa.getEmail());
+        return service.login(empresa.getEmail(), empresa.getSenha());
     }
 
     @Operation(summary = "Listar empresas", description = "Lista todas as empresas")
@@ -44,6 +45,18 @@ public class EmpresaController {
     @GetMapping("/listar")
     public ResponseEntity<List<EmpresaResponseDTO>> listarEmpresas() {
         return ResponseEntity.status(200).body(service.listarEmpresas());
+    }
+
+    @Operation(summary = "Listar infos da empresa pelo id", description = "Lista as informações da empresa pelo id.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Empresa encontrado.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Agendamento.class))),
+            @ApiResponse(responseCode = "404", description = "Empresa não encontrado.")
+    })
+    @GetMapping("/listar/{id}")
+    public ResponseEntity<?> getUsuarioById(@PathVariable Integer id) {
+        return service.buscarEmpresaPorID(id);
     }
 
     @Operation(summary = "Cadastrar empresa", description = "Cadastra uma nova empresa")
@@ -75,4 +88,6 @@ public class EmpresaController {
     public ResponseEntity<?> deletarEmpresa(@PathVariable Integer id) {
         return service.deletarEmpresa(id);
     }
+
+
 }

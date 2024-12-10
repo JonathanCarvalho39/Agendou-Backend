@@ -7,154 +7,134 @@ import back.domain.model.Avaliacao;
 import back.domain.repository.AvaliacaoRepository;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.server.ResponseStatusException;
+
 
 @Service
+@AllArgsConstructor
 public class AvaliacaoService {
-    private final String API_KEY = "f1ce01a6a5ceb2da73b862c3ca4a7d2b";
 
-    @Autowired
-    private AvaliacaoRepository avaliacaoRepository;
+    private static final String API_KEY = "f1ce01a6a5ceb2da73b862c3ca4a7d2b";
+    private static final Logger logger = LoggerFactory.getLogger(AvaliacaoService.class);
 
-    public void submitFormRating(AvaliacaoRequestDTO avaliacaoRequest) throws Exception {
-        HttpClient client = HttpClient.newHttpClient();
-        JSONObject body = new JSONObject();
-        body.put("form_id", avaliacaoRequest.getJfId());
-        body.put("answers", new JSONObject() {{
-            put("control_star_rating", avaliacaoRequest.getEstrelas());
-        }});
+    private final AvaliacaoRepository avaliacaoRepository;
+    private final AvaliacaoMapper avaliacaoMapper;
 
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(new URI("https://api.jotform.com/form/" + avaliacaoRequest.getJfId() + "/submissions?apiKey=" + API_KEY))
-                .POST(HttpRequest.BodyPublishers.ofString(body.toString()))
-                .header("Content-Type", "application/json")
-                .build();
+    public ResponseEntity<?> enviarAvaliacao(AvaliacaoRequestDTO avaliacaoRequest) {
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            var body = new JSONObject();
+            body.put("form_id", avaliacaoRequest.getJfId());
+            body.put("answers", new JSONObject().put("control_star_rating", avaliacaoRequest.getEstrelas()));
 
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(new URI("https://api.jotform.com/form/" + avaliacaoRequest.getJfId() + "/submissions?apiKey=" + API_KEY))
+                    .POST(HttpRequest.BodyPublishers.ofString(body.toString()))
+                    .header("Content-Type", "application/json")
+                    .build();
 
-        if (response.statusCode() != 200) {
-            throw new RuntimeException("Erro ao enviar a avaliação. Código: " + response.statusCode() + ", Mensagem: " + response.body());
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            if (response.statusCode() != 200) {
+                logger.error("Erro ao enviar avaliação: {} - {}", response.statusCode(), response.body());
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body("Erro ao enviar a avaliação. Verifique os dados fornecidos.");
+            }
+
+            logger.info("Avaliação enviada com sucesso: {}", avaliacaoRequest);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        } catch (Exception e) {
+            logger.error("Erro ao enviar avaliação", e);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erro ao enviar a avaliação.");
         }
     }
 
-    public List<AvaliacaoResponseDTO> getFormRatings() throws Exception {
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(new URI("https://api.jotform.com/user/forms?apiKey=" + API_KEY))
-                .GET()
-                .build();
+    public ResponseEntity<List<AvaliacaoResponseDTO>> listarAvaliacoes() {
+        try {
+            List<AvaliacaoResponseDTO> avaliacaoResponseDTOs = new ArrayList<>();
+            HttpClient client = HttpClient.newHttpClient();
 
-        HttpClient client = HttpClient.newHttpClient();
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(new URI("https://api.jotform.com/user/forms?apiKey=" + API_KEY))
+                    .GET()
+                    .build();
 
-        JSONArray formsArray = new JSONObject(response.body()).getJSONArray("content");
-        List<AvaliacaoResponseDTO> avaliacaoResponseDTOs = new ArrayList<>();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            var formsArray = new JSONObject(response.body()).getJSONArray("content");
 
-        for (int i = 0; i < formsArray.length(); i++) {
-            JSONObject formJson = formsArray.getJSONObject(i);
-            String formId = formJson.getString("id");
+            for (int i = 0; i < formsArray.length(); i++) {
+                String formId = formsArray.getJSONObject(i).getString("id");
+                int estrelas = (int) Math.round(getStarRating(formId));
 
-            int starRating = getStarRating(formId);
-            Avaliacao avaliacao = new Avaliacao(null, formId, starRating);
-            avaliacaoRepository.save(avaliacao);
+                Avaliacao avaliacao = new Avaliacao(null, formId, estrelas);
+                avaliacaoRepository.save(avaliacao);
+                avaliacaoResponseDTOs.add(avaliacaoMapper.toDTO(avaliacao));
+            }
 
-            avaliacaoResponseDTOs.add(AvaliacaoMapper.toDTO(avaliacao));
+            avaliacaoResponseDTOs.sort((a, b) -> Integer.compare(b.getEstrelas(), a.getEstrelas()));
+
+            return ResponseEntity.ok(avaliacaoResponseDTOs);
+        } catch (Exception e) {
+            logger.error("Erro ao listar avaliações", e);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erro ao listar as avaliações.");
         }
-        
-        mergeSort(avaliacaoResponseDTOs, 0, avaliacaoResponseDTOs.size() - 1);
-
-        return avaliacaoResponseDTOs;
     }
 
-    private int getStarRating(String formId) throws Exception {
+    private double getStarRating(String formId) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(new URI("https://api.jotform.com/form/" + formId + "/submissions?apiKey=" + API_KEY))
                 .GET()
                 .build();
 
-        HttpClient client = HttpClient.newHttpClient();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
         JSONArray submissionsArray = new JSONObject(response.body()).getJSONArray("content");
 
         int totalStars = 0;
         int count = 0;
 
         for (int i = 0; i < submissionsArray.length(); i++) {
-            JSONObject submissionJson = submissionsArray.getJSONObject(i);
-            JSONObject answers = submissionJson.getJSONObject("answers");
+            JSONObject answers = submissionsArray.getJSONObject(i).optJSONObject("answers");
+            if (answers == null) continue;
 
             for (String key : answers.keySet()) {
                 JSONObject answer = answers.getJSONObject(key);
-                if ("control_star_rating".equals(answer.getString("type"))) {
-                    int starRating = answer.getInt("answer");
-                    totalStars += starRating;
-                    count++;
+                if ("control_rating".equals(answer.optString("type")) && answer.has("answer")) {
+                    try {
+                        totalStars += Integer.parseInt(answer.getString("answer"));
+                        count++;
+                    } catch (NumberFormatException e) {
+                        logger.warn("Erro ao converter estrelas para inteiro");
+                    }
                 }
             }
         }
 
-        return count > 0 ? totalStars / count : 0;
+        return count > 0 ? (double) totalStars / count : 0.0;
     }
 
-
-    private void mergeSort(List<AvaliacaoResponseDTO> avaliacoes, int left, int right) {
-        if (left < right) {
-            int middle = (left + right) / 2;
-
-
-            mergeSort(avaliacoes, left, middle);
-            mergeSort(avaliacoes, middle + 1, right);
-
-            merge(avaliacoes, left, middle, right);
+    public int calcularMediaEstrelas() {
+        List<Avaliacao> avaliacoes = avaliacaoRepository.findAll();
+        if (avaliacoes.isEmpty()) {
+            return 0;
         }
+
+        int totalEstrelas = avaliacoes.stream().mapToInt(Avaliacao::getEstrelas).sum();
+        double media = (double) totalEstrelas / avaliacoes.size();
+
+        return (int) Math.round(media);
     }
 
-    private void merge(List<AvaliacaoResponseDTO> avaliacoes, int left, int middle, int right) {
-        int n1 = middle - left + 1;
-        int n2 = right - middle;
-
-        AvaliacaoResponseDTO[] leftArray = new AvaliacaoResponseDTO[n1];
-        AvaliacaoResponseDTO[] rightArray = new AvaliacaoResponseDTO[n2];
-
-        for (int i = 0; i < n1; i++) {
-            leftArray[i] = avaliacoes.get(left + i);
-        }
-        for (int j = 0; j < n2; j++) {
-            rightArray[j] = avaliacoes.get(middle + 1 + j);
-        }
-
-        int i = 0, j = 0;
-        int k = left;
-
-        while (i < n1 && j < n2) {
-            if (leftArray[i].getEstrelas() <= rightArray[j].getEstrelas()) {
-                avaliacoes.set(k, leftArray[i]);
-                i++;
-            } else {
-                avaliacoes.set(k, rightArray[j]);
-                j++;
-            }
-            k++;
-        }
-
-        while (i < n1) {
-            avaliacoes.set(k, leftArray[i]);
-            i++;
-            k++;
-        }
-
-        while (j < n2) {
-            avaliacoes.set(k, rightArray[j]);
-            j++;
-            k++;
-        }
-    }
 }

@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AvaliacaoResponseDTO {
-    private Integer aId;
-    private String jfId;
-    private Integer estrelas;
+public class AgendamentosPorMesDTO {
+    private String mes;
+    private Long total;
 }
 
