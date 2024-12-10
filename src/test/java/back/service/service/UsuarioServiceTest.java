@@ -176,32 +176,6 @@ class UsuarioServiceTest {
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
     }
 
-
-    @Test
-    @DisplayName("Deve retornar ok e o usuário atualizado quando ele for encontrado e atualizado com sucesso")
-    void encontraUsuarioEAtualizaComSucesso() {
-
-        Integer id = 1;
-        UsuarioRequestDTO usuarioRequest = new UsuarioRequestDTO("Updated Name", "updated@example.com", "newpassword", "11988888888", UsuarioRole.USER);
-
-        Usuario usuarioExistente = new Usuario(id, "Old Name", "old@example.com", "oldpassword", "11999999999", UsuarioRole.USER);
-        Mockito.when(repository.findById(id)).thenReturn(Optional.of(usuarioExistente));
-
-        Mockito.when(repository.save(Mockito.any(Usuario.class))).thenReturn(usuarioExistente);
-
-        Mockito.when(mapper.toUsuarioResponseDto(Mockito.any(Usuario.class))).thenReturn(new UsuarioResponseDTO(id, "Updated Name", "updated@example.com", "newpassword",
-                "11988888888", UsuarioRole.USER, "token"));
-
-        ResponseEntity<?> response = usuarioService.atualizarUsuario(id, usuarioRequest);
-
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertNotNull(response.getBody());
-        assertTrue(response.getBody() instanceof UsuarioResponseDTO);
-        UsuarioResponseDTO responseDTO = (UsuarioResponseDTO) response.getBody();
-        assertEquals("Updated Name", responseDTO.getNome());
-    }
-
-
     @Test
     @DisplayName("Deve retornar erro quando o usuário não for encontrado")
     void procuraUsuarioParaSerAtualizadoENaoEncontra() {

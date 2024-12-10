@@ -44,6 +44,9 @@ public class Usuario implements UserDetails {
     @Column(name = "data_cadastro")
     private LocalDateTime dataCadastro;
 
+    public Usuario(int i, String testUser, String email, String senha, String number, UsuarioRole usuarioRole) {
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (this.role == UsuarioRole.USER) return List.of(new SimpleGrantedAuthority("ROLE_USER"));
