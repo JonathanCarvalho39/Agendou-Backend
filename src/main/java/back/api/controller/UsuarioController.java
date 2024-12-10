@@ -2,6 +2,7 @@ package back.api.controller;
 
 import back.domain.dto.request.UsuarioRequestDTO;
 import back.domain.dto.response.UsuarioResponseDTO;
+import back.domain.model.Agendamento;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -46,6 +47,18 @@ public class UsuarioController {
         return ResponseEntity.status(200).body(service.listarUsuarios());
     }
 
+    @Operation(summary = "Listar infos do usuario pelo id", description = "Lista as informações do usuário pelo id.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Usuario encontrado.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Agendamento.class))),
+            @ApiResponse(responseCode = "404", description = "Usuario não encontrado.")
+    })
+    @GetMapping("/listar/{id}")
+    public ResponseEntity<?> getUsuarioById(@PathVariable Integer id) {
+        return service.buscarUsuarioPorID(id);
+    }
+
     @Operation(summary = "Cadastrar usuário", description = "Cadastrar um novo usuário")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Usuário cadastrado"),
@@ -74,5 +87,17 @@ public class UsuarioController {
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<?> deletarUsuario(@PathVariable Integer id) {
         return service.deletarUsuario(id);
+    }
+
+
+    @Operation(summary = "Contar novos clientes", description = "Retorna a quantidade de novos clientes cadastrados desde o início do mês")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Quantidade de novos clientes obtida com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Erro ao obter a quantidade de novos clientes")
+    })
+    @GetMapping("/novos-clientes")
+    public ResponseEntity<Long> contarNovosUsuariosDoMes() {
+        long quantidade = service.contarNovosUsuariosDoMes();
+        return ResponseEntity.ok(quantidade);
     }
 }

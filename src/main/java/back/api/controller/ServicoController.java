@@ -2,6 +2,7 @@ package back.api.controller;
 
 import back.domain.dto.request.ServicoRequestDTO;
 import back.domain.dto.response.ServicoResponseDTO;
+import back.domain.model.Agendamento;
 import back.domain.model.Servico;
 import back.domain.repository.ServicoRepository;
 import jakarta.validation.Valid;
@@ -51,6 +52,18 @@ public class ServicoController {
     @GetMapping("/listar")
     public ResponseEntity<List<ServicoResponseDTO>> listarServicos() {
         return ResponseEntity.status(200).body(service.listarServicos());
+    }
+
+    @Operation(summary = "Listar infos do serviço pelo id", description = "Lista as informações do serviço pelo id.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Servico encontrado.",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Agendamento.class))),
+            @ApiResponse(responseCode = "404", description = "Servico não encontrado.")
+    })
+    @GetMapping("/listar/{id}")
+    public ResponseEntity<?> getUsuarioById(@PathVariable Integer id) {
+        return service.buscarServicoPorID(id);
     }
 
     @Operation(summary = "Atualizar serviço", description = "Atualizar um serviço existente")

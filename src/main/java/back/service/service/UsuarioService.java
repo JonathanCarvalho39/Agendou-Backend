@@ -2,10 +2,12 @@ package back.service.service;
 
 import back.api.config.security.TokenService;
 import back.domain.dto.request.UsuarioRequestDTO;
+import back.domain.dto.response.AgendamentoResponseDTO;
 import back.domain.dto.response.LoginResponseDTO;
 import back.domain.dto.response.LoginUserResponseDTO;
 import back.domain.dto.response.UsuarioResponseDTO;
 import back.domain.mapper.UsuarioMapper;
+import back.domain.model.Agendamento;
 import back.domain.model.Usuario;
 import back.domain.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
@@ -18,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -61,10 +64,9 @@ public class UsuarioService {
     }
 
 
-    public ResponseEntity<?> cadastrarUsuario(UsuarioRequestDTO dto){
-
-        if(repository.existsByEmail(dto.getEmail())){
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Email ja cadastrado");
+    public ResponseEntity<?> cadastrarUsuario(UsuarioRequestDTO dto) {
+        if (repository.existsByEmail(dto.getEmail())) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Email já cadastrado");
         }
 
         String encryptedPassword = passwordEncoder.encode(dto.getSenha());
@@ -75,6 +77,8 @@ public class UsuarioService {
         usuario.setEmail(dto.getEmail());
         usuario.setTelefone(dto.getTelefone());
         usuario.setRole(dto.getRole());
+        usuario.setDataCadastro(LocalDateTime.now());
+
         Usuario usuarioSalvo = repository.save(usuario);
 
         UsuarioResponseDTO responseDTO = mapper.toUsuarioResponseDto(usuarioSalvo);
@@ -85,13 +89,9 @@ public class UsuarioService {
         }
 
         logger.info("Usuário cadastrado com sucesso: " + responseDTO.getEmail());
-
-        System.out.println("usuario: " + responseDTO);
-
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(responseDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
     }
+
 
 
     public List<UsuarioResponseDTO> listarUsuarios() {
@@ -101,6 +101,19 @@ public class UsuarioService {
                 .collect(Collectors.toList());
     }
 
+    public ResponseEntity<?> buscarUsuarioPorID(Integer id) {
+        Optional<Usuario> usuarioExistente = repository.findById(id);
+
+        if (usuarioExistente.isEmpty()) {
+            logger.error("Usuario com id " + id + " não encontrado");
+            return ResponseEntity.status(404).body("Agendamento não encontrado");
+        }
+
+        Usuario usuario = usuarioExistente.get();
+        UsuarioResponseDTO responseDTO = mapper.toUsuarioResponseDto(usuario);
+
+        return ResponseEntity.status(200).body(responseDTO);
+    }
 
     public ResponseEntity<?> atualizarUsuario(Integer id, UsuarioRequestDTO usuarioRequest) {
         Optional<Usuario> usuarioExistente = repository.findById(id);
@@ -114,9 +127,11 @@ public class UsuarioService {
         usuario.setNome(usuarioRequest.getNome());
         usuario.setEmail(usuarioRequest.getEmail());
         usuario.setSenha(usuarioRequest.getSenha());
-        usuario.setTelefone(usuario.getTelefone());
+        usuario.setTelefone(usuarioRequest.getTelefone());
 
         repository.save(usuario);
+
+        System.out.println("Telefone após a atualização: " + usuario.getTelefone());
 
         return ResponseEntity.status(200).body(mapper.toUsuarioResponseDto(usuario));
     }
@@ -135,6 +150,11 @@ public class UsuarioService {
         repository.delete(usuario);
 
         return ResponseEntity.status(200).body(usuario);
+    }
+
+    public long contarNovosUsuariosDoMes() {
+        LocalDateTime inicioMes = LocalDateTime.now().withDayOfMonth(1).toLocalDate().atStartOfDay();
+        return repository.countNewUsersThisMonth(inicioMes);
     }
 
 }

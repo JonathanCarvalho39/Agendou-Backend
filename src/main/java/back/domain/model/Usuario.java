@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -39,6 +40,9 @@ public class Usuario implements UserDetails {
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private UsuarioRole role;
+
+    @Column(name = "data_cadastro")
+    private LocalDateTime dataCadastro;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
