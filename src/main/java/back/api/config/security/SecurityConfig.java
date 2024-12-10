@@ -46,6 +46,7 @@ public class SecurityConfig {
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/favicon.ico").permitAll()
                         .requestMatchers(HttpMethod.GET, "/v3/**").permitAll()
+                        .requestMatchers("/error").permitAll()
                         .requestMatchers(HttpMethod.POST, "/servicos").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/servicos").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/servicos").hasRole("ADMIN")
